@@ -1,92 +1,86 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 // Components
 import CurrentWeather from "../components/CurrentWeather";
-import Forecast from "../components/Forecast";
 import DaySummary from "../components/DaySummary";
-// time utils
-import { dateAndTime, unixToLocalTime, getCurrentTime } from "../util/time";
+import DayDetails from "../components/DayDetails";
+import ScrollingHeader from "../components/ScrollingHeader";
 
 const Home = () => {
   const location = useSelector((state) => state.location);
   const current = useSelector((state) => state.current);
   const daily = useSelector((state) => state.daily);
-  const hourly = useSelector((state) => state.hourly);
-
-
-  console.log(location);
-  // console.log(current);
-  console.log(daily);
+  // const hourly = useSelector((state) => state.hourly);
   // console.log(hourly);
 
-  return (
+  // Forecast States
+  const [currentDay, setCurrentDay] = useState(null);
+  const [currentData, setCurrentData] = useState([]);
+  // toggle detail state
+  const[showDetails, setShowDetails] = useState(false);
+  
+  const toggler = () => {
+    showDetails ? setShowDetails(false) : setShowDetails(true);
+  };
+
+  useEffect(() => {
+    setCurrentData(daily.find((day) => day.dt === currentDay));
+  }, [currentDay, daily]);
+
+  return ( 
     <Page>
       {current ? (
         <Today>
           <CurrentWeather
-            city={location.city}
-            country={location.country}
-            timezone={location.timezone}
-            alerts={current.alerts}
-            temp={current.temp}
-            feels_like={current.feels_like}
-            humidity={current.humidity}
-            pressure={current.pressure}
-            dew_point={current.dew_point}
-            conditions={current.weather[0].description}
-            icon={current.weather[0].icon}
-            wind={current.wind_speed}
-            wind_deg={current.wind_deg}
-            visibility={current.visibility}
+            location={location}
+            current={current}
           />
         </Today>
       ) : (
         ""
       )}
       <Week>
-        <Preview>
-          {/*   false was _daily ? ...    */}
-          {daily
-            ? daily.map((day) => (
-                <div key={day.dt}>
-                  <DaySummary
-                    day={day.dt}
-                    timezone={location.timezone}
-                    icon={day.weather[0].icon}
-                    high={day.temp.max}
-                    low={day.temp.min}
-                    conditions={day.weather[0].description}
-                  />
-                </div>
-              ))
-            : ""}
-        </Preview>
-        <Details>
-          {false
-            ? daily.map((day) => (
-                <li key={day.dt}>
-                  <Forecast
-                    day={day.dt}
-                    timezone={location.timezone}
-                    dew={day.dew_point}
-                    humidity={day.humidity}
-                    precipitation={day.pop}
-                    sunrise={day.sunrise}
-                    sunset={day.sunset}
-                    high={day.temp.max}
-                    low={day.temp.min}
-                    uvi={day.uvi}
-                    conditions={day.weather[0].description}
-                    icon={day.weather[0].icon}
-                    wind_speed={day.wind_speed}
-                    wind_direction={day.wind_deg}
-                    pressure={day.pressure}
-                  />
-                </li>
-              ))
-            : ""}
-        </Details>
+        {!showDetails && daily && location ? (
+          <Preview>
+            {daily.map((day) => (
+              <DaySummary
+                key={day.dt}
+                toggleDetails={toggler}
+                setCurrentDay={setCurrentDay}
+                timezone={location.timezone}
+                day={day}
+              />
+            ))}
+          </Preview>
+        ) : (
+          ""
+        )}
+        <>
+        {showDetails ? (
+          <Details>
+            {daily && location ? (
+              <ScrollingHeader
+                toggleDetails={toggler}
+                currentDay={currentDay}
+                setCurrentDay={setCurrentDay}
+                timezone={location.timezone}
+                daily={daily}
+              />
+            ) : (
+              ""
+            )}
+            {currentData && location ? (
+              <DayDetails
+                timezone={location.timezone}
+                data={currentData}
+              />
+            ) : (
+              ""
+            )}
+          </Details>
+          ) : ("") }
+        </>
       </Week>
     </Page>
   );
@@ -119,15 +113,22 @@ const Week = styled.div`
 
 const Preview = styled.div`
   width: 100%;
+  height: 299px;
   background-color: var(--color-primary);
   color: white;
 
-  TableRow:hover{
+  TableRow:hover {
     cursor: pointer;
-    background-color: #1573aa;
+    background-color: var(--color-darker);
   }
 `;
 
-const Details = styled.ul``;
+const Details = styled.div`
+  width: 100%;
+  /* height: 299px; */
+  padding: 10px;
+  background-color: var(--color-primary);
+  color: white;
+`;
 
 export default Home;
