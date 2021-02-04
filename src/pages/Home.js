@@ -17,25 +17,26 @@ const Home = () => {
   // Forecast States
   const [currentDay, setCurrentDay] = useState(null);
   const [currentData, setCurrentData] = useState([]);
-  // toggle detail state
-  const[showDetails, setShowDetails] = useState(false);
-  
+  // toggle forecast detail state
+  const [showDetails, setShowDetails] = useState(false);
+
   const toggler = () => {
     showDetails ? setShowDetails(false) : setShowDetails(true);
   };
 
   useEffect(() => {
+    setShowDetails(false);
+  }, [location]);
+
+  useEffect(() => {
     setCurrentData(daily.find((day) => day.dt === currentDay));
   }, [currentDay, daily]);
 
-  return ( 
+  return (
     <Page>
       {current ? (
         <Today>
-          <CurrentWeather
-            location={location}
-            current={current}
-          />
+          <CurrentWeather location={location} current={current} />
         </Today>
       ) : (
         ""
@@ -57,29 +58,28 @@ const Home = () => {
           ""
         )}
         <>
-        {showDetails ? (
-          <Details>
-            {daily && location ? (
-              <ScrollingHeader
-                toggleDetails={toggler}
-                currentDay={currentDay}
-                setCurrentDay={setCurrentDay}
-                timezone={location.timezone}
-                daily={daily}
-              />
-            ) : (
-              ""
-            )}
-            {currentData && location ? (
-              <DayDetails
-                timezone={location.timezone}
-                data={currentData}
-              />
-            ) : (
-              ""
-            )}
-          </Details>
-          ) : ("") }
+          {showDetails ? (
+            <Details>
+              {location && daily ? (
+                <ScrollingHeader
+                  toggleDetails={toggler}
+                  currentDay={currentDay}
+                  setCurrentDay={setCurrentDay}
+                  timezone={location.timezone}
+                  daily={daily}
+                />
+              ) : (
+                ""
+              )}
+              {location && currentData ? (
+                <DayDetails timezone={location.timezone} data={currentData} />
+              ) : (
+                ""
+              )}
+            </Details>
+          ) : (
+            ""
+          )}
         </>
       </Week>
     </Page>

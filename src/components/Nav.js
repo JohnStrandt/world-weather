@@ -12,13 +12,14 @@ const Nav = () => {
   const [textInput, setTextInput] = useState("");
 
   const inputHandler = (e) => {
+    e.preventDefault();
     setTextInput(e.target.value);
   };
 
   const submitSearch = (e) => {
     e.preventDefault();
     dispatch(getWeather(textInput));
-    setTextInput(""); // clear field after search
+    setTextInput("");
   };
 
   const clearSearch = () => {
@@ -111,8 +112,8 @@ const Logo = styled.div`
       font-size: 2rem;
     }
     img {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
     }
   }
 `;

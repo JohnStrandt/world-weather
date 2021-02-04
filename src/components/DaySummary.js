@@ -53,7 +53,7 @@ const Day = styled.div`
   }
   :hover {
     cursor: pointer;
-    background: var(--color-darker);
+    background: var(--color-secondary);
   }
 `;
 

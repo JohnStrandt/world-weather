@@ -14,10 +14,10 @@ const CurrentWeather = ({ location, current }) => {
 
   return (
     <Current>
-      <div>
-        <h3>
+      <div className="local-info">
+        <h2>
           {location.city}, {location.country}
-        </h3>
+        </h2>
         <p className="small-font">{localTime}</p>
       </div>
       <div className="conditions">
@@ -60,8 +60,11 @@ const Current = styled.div`
     padding: 0.5rem 0;
     font-size: 3rem;
   }
-  h3 {
-    line-height: 1.5rem;
+  .local-info {
+    color: var(--color-secondary);
+  }
+  h2 {
+    line-height: 2rem;
   }
   .bold {
     font-weight: 600;

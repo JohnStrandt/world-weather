@@ -13,7 +13,7 @@ const DayDetails = ({ timezone, data }) => {
   let lowTemp = Math.round(data.temp.min);
   let windSpeed = Math.round(data.wind_speed);
   let hgPressure = Math.round(data.pressure / 33.8639);
-  let precip = data.pop * 100;
+  let precip = Math.round(data.pop * 100);
   let dew = Math.round(data.dew_point);
   
   return (
@@ -33,7 +33,7 @@ const DayDetails = ({ timezone, data }) => {
       <li>{data.humidity}% Humidity</li>
       <li>Dew Point {dew}°F</li>
       <li>UV {data.uvi}</li>
-      <li>Precipitation {precip}%</li>
+      <li>Precip {precip}%</li>
     </ul>
 
     <Temps>
