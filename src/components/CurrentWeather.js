@@ -14,7 +14,7 @@ const CurrentWeather = ({ location, current }) => {
 
   return (
     <Current>
-      <div className="local-info">
+      <div>
         <h2>
           {location.city}, {location.country}
         </h2>
@@ -55,13 +55,11 @@ const CurrentWeather = ({ location, current }) => {
 };
 
 const Current = styled.div`
+  color: var(--color-secondary);
   width: 100%;
   .conditions {
     padding: 0.5rem 0;
     font-size: 3rem;
-  }
-  .local-info {
-    color: var(--color-secondary);
   }
   h2 {
     line-height: 2rem;
@@ -84,7 +82,7 @@ const ConditionsSecondary = styled.ul`
   flex-wrap: wrap;
   line-height: 1.5rem;
   list-style-type: none;
-  margin: .7rem 0;
+  margin: 0.7rem 0;
   li {
     padding-right: 1rem;
   }
