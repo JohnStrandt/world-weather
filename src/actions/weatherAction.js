@@ -30,4 +30,3 @@ export const getWeather = (city) => async (dispatch) => {
     },
   });
 };
-
