@@ -5,43 +5,25 @@ import { getCurrentTime, dateAndTime } from "../util/time";
 const CurrentWeather = ({ location, current }) => {
   let localTime = dateAndTime(getCurrentTime(location.timezone));
   let currentTemp = Math.round(current.temp);
-  let feelsLike = Math.round(current.feels_like);
-  let _visibility = Math.round(current.visibility / 1609.34);
-  let _pressure = Math.round(current.pressure / 33.8639);
-  let _wind = Math.round(current.wind_speed);
-  let _dew_point = Math.round(current.dew_point);
+  let highTemp = Math.round(current.high_temp);
+  let lowTemp = Math.round(current.low_temp);
   let alerts = current.alerts;
 
   return (
     <Current>
       <div>
-        <h2>
-          {location.city}, {location.country}
-        </h2>
-        <p className="small-font">{localTime}</p>
+        <p className="location-text">{location.city}</p>
+        <p className="text-small">{localTime}</p>
       </div>
+
       <div className="conditions">
-        <p className={`owi owi-${current.weather[0].icon}`}>
-          {" "}
-          {currentTemp}°F
-          <span className="wi-fahrenheit"></span>
+        <p className="text-small">{current.weather[0].description}</p>
+        <p className="temp-text">{currentTemp}°</p>
+        <p className="text-small">
+          high {highTemp}° ~ low {lowTemp}°
         </p>
       </div>
-      <div className="bold">
-        {current.weather[0].description}, feels like {feelsLike}°
-      </div>
-      <ConditionsSecondary>
-        <li>
-          <p className="wi wi-wind from-330-deg"></p>
-          wind {_wind}mph {current.wind_deg}°
-        </li>
-        <li className="wi wi-barometer">{_pressure}"Hg</li>
-        <li>
-          {current.humidity}%<span className="wi wi-humidity"> Humidity</span>
-        </li>
-        <li>Dew Point {_dew_point}°F</li>
-        <li>Visibility {_visibility}mi</li>
-      </ConditionsSecondary>
+
       {alerts
         ? alerts.map((alert) => (
             <div className="alerts" key={alert.event}>
@@ -55,36 +37,27 @@ const CurrentWeather = ({ location, current }) => {
 };
 
 const Current = styled.div`
-  color: var(--color-secondary);
   width: 100%;
-  .conditions {
-    padding: 0.5rem 0;
-    font-size: 3rem;
+
+  .location-text {
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
-  h2 {
-    line-height: 2rem;
+  .temp-text {
+    font-size: 4rem;
+    line-height: 4rem;
   }
-  .bold {
-    font-weight: 600;
-  }
-  .small-font {
+  .text-small {
     font-size: 0.9rem;
   }
   .alerts {
-    font-weight: bold;
+    font-weight: normal;
     color: var(--color-accent);
     line-height: 1.2rem;
   }
-`;
-
-const ConditionsSecondary = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  line-height: 1.5rem;
-  list-style-type: none;
-  margin: 0.7rem 0;
-  li {
-    padding-right: 1rem;
+  .conditions {
+    padding: 0;
+    margin-top: 1rem;
   }
 `;
 

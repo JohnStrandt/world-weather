@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { getDay, unixToLocalTime } from "../util/time";
-import up from "../images/up.svg";
+import clear from "../images/clear.svg";
 
 const ScrollingHeader = ({
   toggleDetails,
@@ -31,7 +31,7 @@ const ScrollingHeader = ({
         ))}
       </Scroll>
       <Toggler onClick={toggleDetails}>
-        <img src={up} alt="up arrow" />
+        <img src={clear} alt="exit" />
       </Toggler>
     </Header>
   );
@@ -39,8 +39,8 @@ const ScrollingHeader = ({
 
 const Header = styled.div`
   display: flex;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px dashed white;
+  border-bottom: 1px dashed white;
   .highlighted {
     font-weight: bold;
     color: var(--color-accent);
@@ -48,9 +48,8 @@ const Header = styled.div`
 `;
 
 const Scroll = styled.div`
-  background-color: var(--color-secondary);
   display: flex;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
   overflow: auto;
   white-space: nowrap;
   :hover {
@@ -67,14 +66,17 @@ const Scroll = styled.div`
 `;
 
 const Toggler = styled.div`
+  position: relative;
   width: 3rem;
-  padding: 0.5rem 1rem;
+  padding: 0 .7rem;
   :hover {
     cursor: pointer;
-    background-color: var(--color-secondary);
   }
   img {
-    width: 1rem;
+    width: 1.2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
 

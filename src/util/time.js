@@ -20,6 +20,52 @@ export const getDay = (dateString) => {
   return `${day}, ${date}`;
 };
 
+export const getWeekday = (dateString) => {
+  let day = dateString.substring(0, 3);
+  let weekday = "";
+  switch (day) {
+    case "Sun":
+      weekday = "Sunday";
+      break;
+    case "Mon":
+      weekday = "Monday";
+      break;
+    case "Tue":
+      weekday = "Tuesday";
+      break;
+    case "Wed":
+      weekday = "Wednesday";
+      break;
+    case "Thu":
+      weekday = "Thursday";
+      break;
+    case "Fri":
+      weekday = "Friday";
+      break;
+    case "Sat":
+      weekday = "Saturday";
+      break;
+    default:
+      break;
+  }
+  return weekday;
+};
+
+export const getHour = (dateString) => {
+  let hour = dateString.substring(16, 18) * 1;
+  let ampm = "AM";
+  if (hour === 0) {
+    hour = 12;
+  }
+  else if (hour >= 12) {
+    ampm = "PM";
+    if (hour > 12) {
+      hour -= 12;
+    }
+  }
+  return `${hour}${ampm}`;
+};
+
 export const unixToLocalTime = (unixTime, timezone) => {
   let localMachineTime = new Date();
   let localMachineOffset = localMachineTime.getTimezoneOffset() * 60;
@@ -34,7 +80,10 @@ export const formatTime = (dateString) => {
   let hour = time.substring(0, 2) * 1;
   let min = time.substring(3, 5);
   let ampm = "AM";
-  if (hour >= 12) {
+  if (hour === 0) {
+    hour = 12;
+  }
+  else if (hour >= 12) {
     ampm = "PM";
     if (hour > 12) {
       hour -= 12;
@@ -42,7 +91,6 @@ export const formatTime = (dateString) => {
   }
   return `${hour}:${min} ${ampm}`;
 };
-
 
 // today: time, date
 // weekdays: day, date

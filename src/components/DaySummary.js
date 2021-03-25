@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { unixToLocalTime, getDay } from "../util/time";
-import down from "../images/down.svg";
+import { unixToLocalTime, getWeekday } from "../util/time";
+import next from "../images/next.svg";
 
 const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
-  let weekday = getDay(unixToLocalTime(day.dt, timezone));
+  let weekday = getWeekday(unixToLocalTime(day.dt, timezone));
   let high = Math.round(day.temp.max);
   let low = Math.round(day.temp.min);
 
@@ -17,24 +17,30 @@ const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
   return (
     <Day onClick={clickHandler}>
       <div className="date">{weekday}</div>
-      <div
-        className={`owi owi-${day.weather[0].icon}`}
-      >{` ${high}/${low}`}</div>
+      <div className="hilo">
+        <div className={`owi owi-${day.weather[0].icon}`}></div>
+        <div>
+          {high} <span className="light">{low}</span>
+        </div>
+      </div>
       <div className="description">{day.weather[0].description}</div>
       <div className="arrow">
-        <img src={down} alt="down" />
+        <img src={next} alt="next" />
       </div>
     </Day>
   );
 };
 
 const Day = styled.div`
-  line-height: 2.3rem;
-  border-bottom: 1px solid white;
+  line-height: 1.9rem;
   display: grid;
   grid-template-columns: 4fr 3fr 4fr 1fr;
   img {
     width: 0.7rem;
+  }
+  .hilo {
+    display: flex;
+    gap: 1rem;
   }
   .owi {
     padding-top: 0.5rem;
@@ -49,11 +55,23 @@ const Day = styled.div`
     white-space: nowrap;
   }
   .arrow {
-    text-align: center;
+    position: relative;
+  }
+  .arrow img {
+    width: 1rem;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
   :hover {
     cursor: pointer;
-    background: var(--color-secondary);
+    background-color:#0247a8;
+  }
+  .light {
+    font-weight: 100;
   }
 `;
 

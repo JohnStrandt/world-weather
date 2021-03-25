@@ -3,23 +3,25 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 
 :root {
-  --color-primary: #2292d1;
-  --color-secondary: #1a71a3;
   --color-accent: #ff7676;
+  --color-sun: #F7EA21;
 }
-  *, html{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body{
-    /* max-width: 800px; */
-    /* margin: 0 auto; */
-  font-family: 'Montserrat', sans-serif;
-  }
+/* icon: "01d" sun */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  padding: 0;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  color: white;
+}
 
 `;
 export default GlobalStyles;
-
-// font-family: 'Gochi Hand', cursive;
-// font-family: 'Poppins', sans-serif;

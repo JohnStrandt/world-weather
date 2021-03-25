@@ -3,6 +3,7 @@ const initState = {
   current: null,
   daily: [],
   hourly: [],
+  error: null,
 };
 
 const weatherReducer = (state = initState, action) => {

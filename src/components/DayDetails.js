@@ -18,25 +18,25 @@ const DayDetails = ({ timezone, data }) => {
   
   return (
     <Card>
-    <div className="headline">
-      <div>
-        <i className={`owi owi-${data.weather[0].icon}`}></i>
+      <div className="headline">
+        <div>
+          <i className={`owi owi-${data.weather[0].icon}`}></i>
+        </div>
+        <div>
+        <p>{data.weather[0].description}</p>
+        <p>high {highTemp}° ~ low {lowTemp}°</p>
+        </div>
       </div>
-      <div>
-      <p>{data.weather[0].description}</p>
-      <p>High of {highTemp}°F, low of {lowTemp}°F</p>
-      </div>
-    </div>
-    <ul className="details">
-      <li>wind {windSpeed}mph {data.wind_deg}°</li>
-      <li >{hgPressure}"Hg</li>
-      <li>{data.humidity}% Humidity</li>
-      <li>Dew Point {dew}°F</li>
-      <li>UV {data.uvi}</li>
-      <li>Precip {precip}%</li>
-    </ul>
+      <ul className="details">
+        <li>wind {windSpeed}mph {data.wind_deg}°</li>
+        <li >{hgPressure}"Hg</li>
+        <li>{data.humidity}% Humidity</li>
+        <li>Dew Point {dew}°</li>
+        <li>UV {data.uvi}</li>
+        <li>Precip {precip}%</li>
+      </ul>
 
-    <Temps>
+      <Temps>
         <div className="row">
           <div></div>
           <div className="small-text">Morning</div>
@@ -46,48 +46,47 @@ const DayDetails = ({ timezone, data }) => {
         </div>
         <div className="row">
           <div className="small-text">temp</div>
-          <div>{Math.round(data.temp.morn)}°F</div>
-          <div>{Math.round(data.temp.day)}°F</div>
-          <div>{Math.round(data.temp.eve)}°F</div>
-          <div>{Math.round(data.temp.night)}°F</div>
+          <div>{Math.round(data.temp.morn)}°</div>
+          <div>{Math.round(data.temp.day)}°</div>
+          <div>{Math.round(data.temp.eve)}°</div>
+          <div>{Math.round(data.temp.night)}°</div>
         </div>
         <div className="row">
           <div className="small-text">feels like</div>
-          <div>{Math.round(data.feels_like.morn)}°F</div>
-          <div>{Math.round(data.feels_like.day)}°F</div>
-          <div>{Math.round(data.feels_like.eve)}°F</div>
-          <div>{Math.round(data.feels_like.night)}°F</div>
+          <div>{Math.round(data.feels_like.morn)}°</div>
+          <div>{Math.round(data.feels_like.day)}°</div>
+          <div>{Math.round(data.feels_like.eve)}°</div>
+          <div>{Math.round(data.feels_like.night)}°</div>
         </div>
       </Temps>
-      <div className="sun">sunrise {_sunrise}, sunset {_sunset}</div>
-  </Card>
+      <div className="sun">
+        <p>
+          sunrise {_sunrise}
+        </p>
+        <p>
+          sunset {_sunset}
+        </p>
+      </div>
+    </Card>
   );
 };
-const Temps = styled.div`
-  .row {
-    display: grid;
-    line-height: 1.5rem;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  }
-  @media only screen and (max-width: 600px) {
-    font-size: .8rem;
-  }
-`;
 
 const Card = styled.div`
   .headline {
     display: flex;
+    gap: 1.5rem;
     align-items: center;
-    margin: .5rem 0;
+    justify-content: center;
     line-height: 1.5rem;
   }
   .headline i {
     font-size: 3rem;
-    padding: 12px 12px 0px 0px;
+    padding: .7rem 1.5rem 0px 1.5rem;
   }
   .details {
     display: flex;
-    line-height: 1.5rem;
+    justify-content: center;
+    line-height: 1.2rem;
     margin: .5rem 0;
   }
   .temps {
@@ -96,11 +95,9 @@ const Card = styled.div`
   .small-text {
     font-size: .8rem;
   }
-  .bold {
-    font-size: normal;
-    font-weight: 600;
-  }
   .sun {
+    display: flex;
+    justify-content: space-between;
     line-height: 2rem;
   }
   ul{
@@ -108,11 +105,21 @@ const Card = styled.div`
     flex-wrap: wrap;
     align-items: space-around;
     list-style-type: none;
-    /* margin: 10px 0; */
     line-height: 1.4rem;
   }
   li {
     padding-right: 1rem;
+  }
+`;
+
+const Temps = styled.div`
+  .row {
+    display: grid;
+    line-height: 1.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  @media only screen and (max-width: 600px) {
+    font-size: .8rem;
   }
 `;
 
