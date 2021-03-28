@@ -12,13 +12,13 @@ const CurrentWeather = ({ location, current }) => {
   return (
     <Current>
       <div>
-        <p className="location-text">{location.city}</p>
+        <p className="city-font">{location.city}</p>
         <p className="text-small">{localTime}</p>
       </div>
 
       <div className="conditions">
         <p className="text-small">{current.weather[0].description}</p>
-        <p className="temp-text">{currentTemp}°</p>
+        <p className="temp-font">{currentTemp}°</p>
         <p className="text-small">
           high {highTemp}° ~ low {lowTemp}°
         </p>
@@ -38,14 +38,16 @@ const CurrentWeather = ({ location, current }) => {
 
 const Current = styled.div`
   width: 100%;
+  margin: 0 auto;
+  text-align: center;
 
-  .location-text {
+  .city-font {
     font-size: 2rem;
-    line-height: 2.5rem;
+    line-height: 1.2em;
   }
-  .temp-text {
+  .temp-font {
     font-size: 4rem;
-    line-height: 4rem;
+    line-height: 1em;
   }
   .text-small {
     font-size: 0.9rem;
@@ -53,11 +55,11 @@ const Current = styled.div`
   .alerts {
     font-weight: normal;
     color: var(--color-accent);
-    line-height: 1.2rem;
+    line-height: 1.2em;
   }
   .conditions {
     padding: 0;
-    margin-top: 1rem;
+    margin-top: 1em;
   }
 `;
 

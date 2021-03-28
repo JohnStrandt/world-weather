@@ -49,39 +49,44 @@ const Home = () => {
 
   return (
     <Page>
-      {current && location ? (
-        <Today>
-          <CurrentWeather location={location} current={current} />
-        </Today>
-      ) : (
-        ""
-      )}
-      {hourly && location ? (
-        <Hourly>
-          <HourlyTemps timezone={location.timezone} hourly={hourly} />
-        </Hourly>
-      ) : (
-        ""
-      )}
-      <Week>
-        {!showDetails && daily && location ? (
-          <Preview>
-            {daily.map((day) => (
-              <DaySummary
-                key={day.dt}
-                toggleDetails={toggler}
-                setCurrentDay={setCurrentDay}
-                timezone={location.timezone}
-                day={day}
-              />
-            ))}
-          </Preview>
+      <DynamicMargin>
+        {current && location ? (
+          <div>
+            <CurrentWeather location={location} current={current} />
+          </div>
         ) : (
           ""
         )}
-        <>
+      </DynamicMargin>
+      <DynamicMargin>
+        {hourly && location ? (
+          <div>
+            <HourlyTemps timezone={location.timezone} hourly={hourly} />
+          </div>
+        ) : (
+          ""
+        )}
+      </DynamicMargin>
+
+      <div>
+        <DynamicMargin>
+          {!showDetails && daily && location ? (
+            <div>
+              {daily.map((day) => (
+                <DaySummary
+                  key={day.dt}
+                  toggleDetails={toggler}
+                  setCurrentDay={setCurrentDay}
+                  timezone={location.timezone}
+                  day={day}
+                />
+              ))}
+            </div>
+          ) : (
+            ""
+          )}
           {showDetails ? (
-            <Details>
+            <div>
               {location && daily ? (
                 <ScrollingHeader
                   toggleDetails={toggler}
@@ -98,50 +103,29 @@ const Home = () => {
               ) : (
                 ""
               )}
-            </Details>
+            </div>
           ) : (
             ""
           )}
-        </>
-      </Week>
+        </DynamicMargin>
+      </div>
     </Page>
   );
 };
 
 const Page = styled.div`
-  width: 100%;
-  max-width: 550px;
   margin: 0 auto;
+  padding: 1em 0.5em;
+  width: min(100%, 550px);
 `;
 
-const Today = styled.div`
-  margin: 0 auto;
-  max-width: 500px;
-  overflow: hidden;
-  text-align: center;
-`;
-
-const Hourly = styled.div`
-  margin: 1.2rem 1rem;
-`;
-
-const Week = styled.div`
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  margin-bottom: 0.5rem;
-  ul {
-    list-style: none;
+const DynamicMargin = styled.div`
+  @media only screen and (min-height: 650px) {
+    margin-top: 3vh;
   }
-`;
-
-const Preview = styled.div`
-  width: 100%;
-`;
-
-const Details = styled.div`
-  width: 100%;
-  padding: 0 10px;
+  @media only screen and (min-height: 800px) {
+    margin-top: 5vh;
+  }
 `;
 
 export default Home;

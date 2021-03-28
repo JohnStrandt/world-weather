@@ -33,8 +33,6 @@ export const getWeather = (city) => async (dispatch) => {
 
 export const getGPSWeather = (lat, lon) => async (dispatch) => {
   const todaysWeather = await axios.get(gpsURL(lat, lon));
-  // let lat = todaysWeather.data.coord.lat;
-  // let lon = todaysWeather.data.coord.lon;
   const forecastWeather = await axios.get(forecastURL(lat, lon));
 
   let location = {

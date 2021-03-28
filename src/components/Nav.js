@@ -40,6 +40,7 @@ const Nav = () => {
 };
 
 const StyledForm = styled.form`
+  padding-top: 5vh;
   display: flex;
   justify-content: center;
 
@@ -54,24 +55,18 @@ const StyledForm = styled.form`
   button:hover {
     cursor: pointer;
   }
+  button:focus {
+    outline: none;
+  }
+
   input {
     border-radius: 5px;
     border: none;
     outline: none;
-    width: 30%;
-    min-width: 250px;
+    width: 24ch;
     padding: 0.4rem;
   }
-  @media only screen and (max-width: 600px) {
-    input {
-      font-size: 1rem;
-      width: 50%;
-      min-width: 200px;
-    }
-    /* button {
-      padding: 0 0.5rem;
-    } */
-  }
+
 `;
 
 export default Nav;

@@ -39,8 +39,8 @@ const ScrollingHeader = ({
 
 const Header = styled.div`
   display: flex;
-  border-top: 1px dashed white;
-  border-bottom: 1px dashed white;
+  border-top: 1px dotted white;
+  border-bottom: 1px dotted white;
   .highlighted {
     font-weight: bold;
     color: var(--color-accent);
@@ -49,7 +49,7 @@ const Header = styled.div`
 
 const Scroll = styled.div`
   display: flex;
-  padding: 0.4rem 0;
+  padding: 0.4em 0;
   overflow: auto;
   white-space: nowrap;
   :hover {
@@ -61,19 +61,19 @@ const Scroll = styled.div`
   }
   #date {
     display: inline-block;
-    padding-right: 1rem;
+    padding-right: 1em;
   }
 `;
 
 const Toggler = styled.div`
   position: relative;
-  width: 3rem;
-  padding: 0 .7rem;
+  width: 4em;
+  padding: 0 .5em;
   :hover {
     cursor: pointer;
   }
   img {
-    width: 1.2rem;
+    width: 1.5em;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

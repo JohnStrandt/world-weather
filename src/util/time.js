@@ -56,8 +56,7 @@ export const getHour = (dateString) => {
   let ampm = "AM";
   if (hour === 0) {
     hour = 12;
-  }
-  else if (hour >= 12) {
+  } else if (hour >= 12) {
     ampm = "PM";
     if (hour > 12) {
       hour -= 12;
@@ -82,8 +81,7 @@ export const formatTime = (dateString) => {
   let ampm = "AM";
   if (hour === 0) {
     hour = 12;
-  }
-  else if (hour >= 12) {
+  } else if (hour >= 12) {
     ampm = "PM";
     if (hour > 12) {
       hour -= 12;
@@ -91,6 +89,3 @@ export const formatTime = (dateString) => {
   }
   return `${hour}:${min} ${ampm}`;
 };
-
-// today: time, date
-// weekdays: day, date

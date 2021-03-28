@@ -1,5 +1,3 @@
-//const proxy = "https://cors-anywhere.herokuapp.com/";
-
 const key = process.env.REACT_APP_WEATHER_KEY;
 const base_url = `https://api.openweathermap.org/data/2.5/`;
 

@@ -72,25 +72,24 @@ const DayDetails = ({ timezone, data }) => {
 };
 
 const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: .5em;
+  gap: .5em;
   .headline {
     display: flex;
-    gap: 1.5rem;
+    gap: 3em;
     align-items: center;
     justify-content: center;
-    line-height: 1.5rem;
+    line-height: 1.5em;
   }
   .headline i {
     font-size: 3rem;
-    padding: .7rem 1.5rem 0px 1.5rem;
   }
   .details {
     display: flex;
     justify-content: center;
-    line-height: 1.2rem;
-    margin: .5rem 0;
-  }
-  .temps {
-    margin-bottom: .5rem;
+    line-height: 1.5em;
   }
   .small-text {
     font-size: .8rem;
@@ -98,24 +97,22 @@ const Card = styled.div`
   .sun {
     display: flex;
     justify-content: space-between;
-    line-height: 2rem;
   }
   ul{
     display: flex;
     flex-wrap: wrap;
-    align-items: space-around;
-    list-style-type: none;
-    line-height: 1.4rem;
+    list-style: none;
   }
   li {
-    padding-right: 1rem;
+    padding-right: 1em;
   }
+
 `;
 
 const Temps = styled.div`
   .row {
     display: grid;
-    line-height: 1.5rem;
+    line-height: 1.8em;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
   @media only screen and (max-width: 600px) {

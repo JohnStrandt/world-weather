@@ -16,7 +16,7 @@ const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
 
   return (
     <Day onClick={clickHandler}>
-      <div className="date">{weekday}</div>
+      <div className="day">{weekday}</div>
       <div className="hilo">
         <div className={`owi owi-${day.weather[0].icon}`}></div>
         <div>
@@ -32,21 +32,18 @@ const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
 };
 
 const Day = styled.div`
-  line-height: 1.9rem;
+  line-height: 2em;
   display: grid;
   grid-template-columns: 4fr 3fr 4fr 1fr;
   img {
-    width: 0.7rem;
+    width: 1em;
   }
   .hilo {
     display: flex;
-    gap: 1rem;
+    gap: 1em;
   }
   .owi {
-    padding-top: 0.5rem;
-  }
-  .date {
-    padding-left: 0.5rem;
+    padding-top: 0.5em;
   }
   .description {
     font-size: 0.8rem;
@@ -62,13 +59,12 @@ const Day = styled.div`
     position: absolute;
     margin: auto;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
   }
   :hover {
     cursor: pointer;
-    background-color:#0247a8;
+    background-color: var(--color-hover);
   }
   .light {
     font-weight: 100;
