@@ -32,7 +32,7 @@ const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
 };
 
 const Day = styled.div`
-  line-height: 2em;
+  line-height: 1.8em;
   display: grid;
   grid-template-columns: 4fr 3fr 4fr 1fr;
   img {

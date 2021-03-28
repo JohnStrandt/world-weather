@@ -120,6 +120,7 @@ const Page = styled.div`
 `;
 
 const DynamicMargin = styled.div`
+  margin-top: 2vh;
   @media only screen and (min-height: 650px) {
     margin-top: 3vh;
   }
