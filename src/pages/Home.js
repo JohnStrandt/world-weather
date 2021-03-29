@@ -115,16 +115,13 @@ const Home = () => {
 
 const Page = styled.div`
   margin: 0 auto;
-  padding: 1em 0.5em;
+  padding: 0 0.5em;
   width: min(100%, 550px);
 `;
 
 const DynamicMargin = styled.div`
   margin-top: 1.5rem;
-  @media only screen and (min-height: 650px) {
-    margin-top: 3vh;
-  }
-  @media only screen and (min-height: 800px) {
+  @media only screen and (min-height: 700px) {
     margin-top: 5vh;
   }
 `;

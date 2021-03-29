@@ -40,7 +40,10 @@ const Nav = () => {
 };
 
 const StyledForm = styled.form`
-  padding-top: 5vh;
+  margin-top: 1.5em;
+  @media only screen and (min-height: 700px) {
+    margin-top: 5vh;
+  }
   display: flex;
   justify-content: center;
 
@@ -66,7 +69,6 @@ const StyledForm = styled.form`
     width: 24ch;
     padding: 0.4rem;
   }
-
 `;
 
 export default Nav;
