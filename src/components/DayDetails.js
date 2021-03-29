@@ -75,18 +75,18 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: .5em;
-  gap: .5em;
   .headline {
     display: flex;
-    gap: 3em;
-    align-items: center;
+    margin: 1em 0;
     justify-content: center;
     line-height: 1.5em;
   }
   .headline i {
     font-size: 3rem;
+    padding-right: 1.5em;
   }
   .details {
+    margin-bottom: 1em;
     display: flex;
     justify-content: center;
     line-height: 1.5em;
@@ -97,6 +97,7 @@ const Card = styled.div`
   .sun {
     display: flex;
     justify-content: space-between;
+    margin: 1em 0;
   }
   ul{
     display: flex;
