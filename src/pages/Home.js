@@ -51,64 +51,59 @@ const Home = () => {
     <Page>
       <DynamicMargin>
         {current && location ? (
-          <div>
-            <CurrentWeather location={location} current={current} />
-          </div>
-        ) : (
-          ""
-        )}
-      </DynamicMargin>
-      <DynamicMargin>
-        {hourly && location ? (
-          <div>
-            <HourlyTemps timezone={location.timezone} hourly={hourly} />
-          </div>
+          <CurrentWeather location={location} current={current} />
         ) : (
           ""
         )}
       </DynamicMargin>
 
-      <div>
-        <DynamicMargin>
-          {!showDetails && daily && location ? (
-            <div>
-              {daily.map((day) => (
-                <DaySummary
-                  key={day.dt}
-                  toggleDetails={toggler}
-                  setCurrentDay={setCurrentDay}
-                  timezone={location.timezone}
-                  day={day}
-                />
-              ))}
-            </div>
-          ) : (
-            ""
-          )}
-          {showDetails ? (
-            <div>
-              {location && daily ? (
-                <ScrollingHeader
-                  toggleDetails={toggler}
-                  currentDay={currentDay}
-                  setCurrentDay={setCurrentDay}
-                  timezone={location.timezone}
-                  daily={daily}
-                />
-              ) : (
-                ""
-              )}
-              {location && currentData ? (
-                <DayDetails timezone={location.timezone} data={currentData} />
-              ) : (
-                ""
-              )}
-            </div>
-          ) : (
-            ""
-          )}
-        </DynamicMargin>
-      </div>
+      <DynamicMargin>
+        {hourly && location ? (
+            <HourlyTemps timezone={location.timezone} hourly={hourly} />
+        ) : (
+          ""
+        )}
+      </DynamicMargin>
+
+      <DynamicMargin>
+        {!showDetails && daily && location ? (
+          <div>
+            {daily.map((day) => (
+              <DaySummary
+                key={day.dt}
+                toggleDetails={toggler}
+                setCurrentDay={setCurrentDay}
+                timezone={location.timezone}
+                day={day}
+              />
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
+        {showDetails ? (
+          <div>
+            {location && daily ? (
+              <ScrollingHeader
+                toggleDetails={toggler}
+                currentDay={currentDay}
+                setCurrentDay={setCurrentDay}
+                timezone={location.timezone}
+                daily={daily}
+              />
+            ) : (
+              ""
+            )}
+            {location && currentData ? (
+              <DayDetails timezone={location.timezone} data={currentData} />
+            ) : (
+              ""
+            )}
+          </div>
+        ) : (
+          ""
+        )}
+      </DynamicMargin>
     </Page>
   );
 };

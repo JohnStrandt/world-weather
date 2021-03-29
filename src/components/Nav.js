@@ -40,9 +40,9 @@ const Nav = () => {
 };
 
 const StyledForm = styled.form`
-  margin-top: 1.5em;
+  padding-top: 1.5em;
   @media only screen and (min-height: 700px) {
-    margin-top: 5vh;
+    padding-top: 5vh;
   }
   display: flex;
   justify-content: center;
