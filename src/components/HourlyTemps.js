@@ -30,7 +30,6 @@ const HourlyTemps= ({
 
 const Scroll = styled.div`
   font-size: .8rem;
-  text-align: center;
   display: flex;
   overflow: auto;
   white-space: nowrap;
@@ -44,7 +43,8 @@ const Scroll = styled.div`
 `;
 
 const Hour = styled.div`
-  padding-right: 2rem;
+  text-align: center;
+  margin-right: 2rem;
   i {
     font-size: 1.2rem;
   }
