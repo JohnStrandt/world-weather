@@ -12,9 +12,16 @@ const ScrollingHeader = ({
 }) => {
 
   const checkDay = (day) => {
-    let textStyle = "normal";
-    if (currentDay === day) textStyle = "highlighted";
-    return textStyle;
+    let id = day;
+    if (currentDay === day) id = "highlighted";
+    return id;
+  };
+
+  const scrollActiveDay = () => {
+    let element = document.querySelector('#highlighted');
+    if (element !== null) element.scrollIntoViewIfNeeded(true);
+    // true is an optional boolean to center the element
+    return ""; // <== this is just to avoid a nag message
   };
 
   return (
@@ -22,14 +29,15 @@ const ScrollingHeader = ({
       <Scroll>
         {daily.map((day) => (
           <div
-            id="date"
+            id={checkDay(day.dt)}
             key={day.dt}
-            className={checkDay(day.dt)}
+            className="date"
             onClick={() => setCurrentDay(day.dt)}
           >
             {getDay(unixToLocalTime(day.dt, timezone))}
           </div>
         ))}
+        {scrollActiveDay()}
       </Scroll>
       <Toggler onClick={toggleDetails}>
         <img src={clear} alt="exit" />
@@ -42,7 +50,7 @@ const Header = styled.div`
   display: flex;
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  .highlighted {
+  #highlighted {
     font-weight: bold;
     color: var(--color-accent);
   }
@@ -60,7 +68,7 @@ const Scroll = styled.div`
     width: 0px;
     height: 0px;
   }
-  #date {
+  .date {
     display: inline-block;
     padding-right: 1em;
   }

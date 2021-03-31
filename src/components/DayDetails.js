@@ -2,10 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { iconStyle } from "../util/styles";
 
-import {
-  unixToLocalTime,
-  formatTime,
-} from "../util/time";
+import { unixToLocalTime, formatTime } from "../util/time";
 
 const DayDetails = ({ timezone, data }) => {
   let _sunrise = formatTime(unixToLocalTime(data.sunrise, timezone));
@@ -16,7 +13,7 @@ const DayDetails = ({ timezone, data }) => {
   let hgPressure = Math.round(data.pressure / 33.8639);
   let precip = Math.round(data.pop * 100);
   let dew = Math.round(data.dew_point);
-  
+
   return (
     <Card>
       <div className="headline">
@@ -24,13 +21,17 @@ const DayDetails = ({ timezone, data }) => {
           <i className={iconStyle(data.weather[0].icon)}></i>
         </div>
         <div>
-        <p>{data.weather[0].description}</p>
-        <p>high {highTemp}° ~ low {lowTemp}°</p>
+          <p>{data.weather[0].description}</p>
+          <p>
+            high {highTemp}° ~ low {lowTemp}°
+          </p>
         </div>
       </div>
       <ul className="details">
-        <li>wind {windSpeed}mph {data.wind_deg}°</li>
-        <li >{hgPressure}"Hg</li>
+        <li>
+          wind {windSpeed}mph {data.wind_deg}°
+        </li>
+        <li>{hgPressure}"Hg</li>
         <li>{data.humidity}% Humidity</li>
         <li>Dew Point {dew}°</li>
         <li>UV {data.uvi}</li>
@@ -61,12 +62,8 @@ const DayDetails = ({ timezone, data }) => {
         </div>
       </Temps>
       <div className="sunTimes">
-        <p>
-          sunrise {_sunrise}
-        </p>
-        <p>
-          sunset {_sunset}
-        </p>
+        <p>sunrise {_sunrise}</p>
+        <p>sunset {_sunset}</p>
       </div>
     </Card>
   );
@@ -75,10 +72,10 @@ const DayDetails = ({ timezone, data }) => {
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: .5em;
+  margin-top: 0.5em;
   .headline {
     display: flex;
-    margin: 1em 0;
+    margin: 0.8em 0;
     justify-content: center;
     line-height: 1.5em;
   }
@@ -87,20 +84,20 @@ const Card = styled.div`
     padding-right: 1em;
   }
   .details {
-    margin-bottom: 1em;
+    margin-bottom: 0.8em;
     display: flex;
     justify-content: center;
     line-height: 1.5em;
   }
   .small-text {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
   .sunTimes {
     display: flex;
     justify-content: space-between;
-    margin: 1em 0;
+    margin: 0.8em 0;
   }
-  ul{
+  ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -108,7 +105,6 @@ const Card = styled.div`
   li {
     padding-right: 1em;
   }
-
 `;
 
 const Temps = styled.div`
@@ -118,7 +114,7 @@ const Temps = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
   @media only screen and (max-width: 600px) {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 `;
 
