@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { iconStyle } from "../util/styles";
 
 import {
   unixToLocalTime,
@@ -20,7 +21,7 @@ const DayDetails = ({ timezone, data }) => {
     <Card>
       <div className="headline">
         <div>
-          <i className={`owi owi-${data.weather[0].icon}`}></i>
+          <i className={iconStyle(data.weather[0].icon)}></i>
         </div>
         <div>
         <p>{data.weather[0].description}</p>
@@ -59,7 +60,7 @@ const DayDetails = ({ timezone, data }) => {
           <div>{Math.round(data.feels_like.night)}°</div>
         </div>
       </Temps>
-      <div className="sun">
+      <div className="sunTimes">
         <p>
           sunrise {_sunrise}
         </p>
@@ -83,7 +84,7 @@ const Card = styled.div`
   }
   .headline i {
     font-size: 3rem;
-    padding-right: 1.5em;
+    padding-right: 1em;
   }
   .details {
     margin-bottom: 1em;
@@ -94,7 +95,7 @@ const Card = styled.div`
   .small-text {
     font-size: .8rem;
   }
-  .sun {
+  .sunTimes {
     display: flex;
     justify-content: space-between;
     margin: 1em 0;

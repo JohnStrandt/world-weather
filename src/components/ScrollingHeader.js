@@ -40,8 +40,8 @@ const ScrollingHeader = ({
 
 const Header = styled.div`
   display: flex;
-  border-top: 1px dotted white;
-  border-bottom: 1px dotted white;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   .highlighted {
     font-weight: bold;
     color: var(--color-accent);

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { unixToLocalTime, getWeekday } from "../util/time";
+import { iconStyle } from "../util/styles";
 import next from "../images/next.svg";
 
 const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
@@ -18,7 +19,7 @@ const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
     <Day onClick={clickHandler}>
       <div className="day">{weekday}</div>
       <div className="hilo">
-        <div className={`owi owi-${day.weather[0].icon}`}></div>
+        <div className={iconStyle(day.weather[0].icon)}></div>
         <div>
           {high} <span className="light">{low}</span>
         </div>

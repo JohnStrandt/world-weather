@@ -38,5 +38,9 @@ body{
   }
 }
 
+.sun {
+    color: var(--color-sun);
+  }
+
 `;
 export default GlobalStyles;

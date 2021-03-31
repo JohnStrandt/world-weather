@@ -99,9 +99,9 @@ const Page = styled.div`
 `;
 
 const DynamicMargin = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1.4rem;
   @media only screen and (min-height: 700px) {
-    margin-top: 5vh;
+    margin-top: 4vh;
   }
 `;
 

@@ -21,7 +21,6 @@ const Nav = () => {
   };
 
   const error = useSelector((state) => state.error);
-
   // const clearSearch = () => {
   //   dispatch({ type: "CLEAR_SEARCHED" });
   // };
@@ -39,15 +38,15 @@ const Nav = () => {
           GO!
         </button>
       </StyledForm>
-      {error ? (
-        <Error>sorry, "{error.city}" not found</Error>
-      ) : ("")}
+      {error && <Error>sorry, "{error.city}" not found</Error>}
     </div>
   );
 };
 
 const Error = styled.p`
-  padding-top: 1rem;
+  position: absolute;
+  width: 100%;
+  padding-top: .3em;
   text-align: center;
   color: var(--color-accent);
   font-weight: 500;
@@ -55,6 +54,7 @@ const Error = styled.p`
 `;
 
 const StyledForm = styled.form`
+  position: relative;
   padding-top: 1.5em;
   @media only screen and (min-height: 700px) {
     padding-top: 5vh;

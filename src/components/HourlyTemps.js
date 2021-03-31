@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { getHour, unixToLocalTime } from "../util/time";
+import { iconStyle } from "../util/styles";
 
 const HourlyTemps= ({
   timezone,
@@ -17,7 +18,7 @@ const HourlyTemps= ({
           {getHour(unixToLocalTime(hour.dt, timezone))}
           </div>
           <div>
-            <i className={`owi owi-${hour.weather[0].icon}`}></i>
+            <i className={iconStyle(hour.weather[0].icon)}></i>
           </div>
           <div>
             {Math.round(hour.temp)}°
