@@ -10,17 +10,16 @@ const ScrollingHeader = ({
   timezone,
   daily,
 }) => {
-
   const checkDay = (day) => {
     let id = day;
     if (currentDay === day) id = "highlighted";
     return id;
   };
 
-  const scrollActiveDay = () => {
-    let element = document.querySelector('#highlighted');
-    if (element !== null) element.scrollIntoViewIfNeeded(true);
-    // true is an optional boolean to center the element
+  const scrollToActiveDay = () => {
+    let element = document.querySelector("#highlighted");
+    if (element !== null)
+      element.scrollIntoView({ behavior: "smooth", inline: "center" });
     return ""; // <== this is just to avoid a nag message
   };
 
@@ -37,7 +36,7 @@ const ScrollingHeader = ({
             {getDay(unixToLocalTime(day.dt, timezone))}
           </div>
         ))}
-        {scrollActiveDay()}
+        {scrollToActiveDay()}
       </Scroll>
       <Toggler onClick={toggleDetails}>
         <img src={clear} alt="exit" />
@@ -77,7 +76,7 @@ const Scroll = styled.div`
 const Toggler = styled.div`
   position: relative;
   width: 4em;
-  padding: 0 .5em;
+  padding: 0 0.5em;
   :hover {
     cursor: pointer;
   }
