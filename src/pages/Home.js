@@ -10,7 +10,9 @@ import ScrollingHeader from "../components/ScrollingHeader";
 import { getGPSWeather } from "../actions/weatherAction";
 
 const Home = () => {
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     // get geolocation on startup
     const success = (position) => {
@@ -36,7 +38,7 @@ const Home = () => {
   const [showDetails, setShowDetails] = useState(false);
 
   const toggler = () => {
-    showDetails ? setShowDetails(false) : setShowDetails(true);
+    setShowDetails(!showDetails);
   };
 
   useEffect(() => {
@@ -49,61 +51,43 @@ const Home = () => {
 
   return (
     <Page>
-      <DynamicMargin>
-        {current && location ? (
-          <CurrentWeather location={location} current={current} />
-        ) : (
-          ""
-        )}
-      </DynamicMargin>
+      <DynamicMargin />
 
-      <DynamicMargin>
-        {hourly && location ? (
-            <HourlyTemps timezone={location.timezone} hourly={hourly} />
-        ) : (
-          ""
-        )}
-      </DynamicMargin>
+      {location && current && (  
+      <CurrentWeather location={location} current={current} />)}
 
-      <DynamicMargin>
-        {!showDetails && daily && location ? (
-          <div>
-            {daily.map((day) => (
-              <DaySummary
-                key={day.dt}
-                toggleDetails={toggler}
-                setCurrentDay={setCurrentDay}
-                timezone={location.timezone}
-                day={day}
-              />
-            ))}
-          </div>
-        ) : (
-          ""
-        )}
-        {showDetails ? (
-          <div>
-            {location && daily ? (
-              <ScrollingHeader
-                toggleDetails={toggler}
-                currentDay={currentDay}
-                setCurrentDay={setCurrentDay}
-                timezone={location.timezone}
-                daily={daily}
-              />
-            ) : (
-              ""
-            )}
-            {location && currentData ? (
-              <DayDetails timezone={location.timezone} data={currentData} />
-            ) : (
-              ""
-            )}
-          </div>
-        ) : (
-          ""
-        )}
-      </DynamicMargin>
+      <DynamicMargin />
+
+      {location && hourly && (
+      <HourlyTemps timezone={location.timezone} hourly={hourly} />)}
+
+      <DynamicMargin />
+
+      {!showDetails && daily && location && (
+        <div>
+          {daily.map((day) => (
+            <DaySummary
+              key={day.dt}
+              toggleDetails={toggler}
+              setCurrentDay={setCurrentDay}
+              timezone={location.timezone}
+              day={day}
+            />
+          ))}
+        </div>
+      )}
+      {showDetails && daily && currentData && (
+        <div>
+            <ScrollingHeader
+              toggleDetails={toggler}
+              currentDay={currentDay}
+              setCurrentDay={setCurrentDay}
+              timezone={location.timezone}
+              daily={daily}
+            />
+            <DayDetails timezone={location.timezone} data={currentData} />
+        </div>
+      )} 
     </Page>
   );
 };

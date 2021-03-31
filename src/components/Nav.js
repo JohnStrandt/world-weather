@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 // Redux
 import { getWeather } from "../actions/weatherAction";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Nav = () => {
   const dispatch = useDispatch();
@@ -20,24 +20,39 @@ const Nav = () => {
     setTextInput("");
   };
 
+  const error = useSelector((state) => state.error);
+
   // const clearSearch = () => {
   //   dispatch({ type: "CLEAR_SEARCHED" });
   // };
 
   return (
-    <StyledForm>
-      <input
-        onChange={inputHandler}
-        value={textInput}
-        type="text"
-        placeholder="Search another location..."
-      />
-      <button type="submit" onClick={submitSearch}>
-        GO!
-      </button>
-    </StyledForm>
+    <div>
+      <StyledForm>
+        <input
+          onChange={inputHandler}
+          value={textInput}
+          type="text"
+          placeholder="Search another location..."
+        />
+        <button type="submit" onClick={submitSearch}>
+          GO!
+        </button>
+      </StyledForm>
+      {error ? (
+        <Error>sorry, "{error.city}" not found</Error>
+      ) : ("")}
+    </div>
   );
 };
+
+const Error = styled.p`
+  padding-top: 1rem;
+  text-align: center;
+  color: var(--color-accent);
+  font-weight: 500;
+  font-size: 0.8rem;
+`;
 
 const StyledForm = styled.form`
   padding-top: 1.5em;

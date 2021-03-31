@@ -10,6 +10,7 @@ const ScrollingHeader = ({
   timezone,
   daily,
 }) => {
+
   const checkDay = (day) => {
     let textStyle = "normal";
     if (currentDay === day) textStyle = "highlighted";
