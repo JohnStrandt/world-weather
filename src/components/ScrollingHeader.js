@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { getDay, unixToLocalTime } from "../util/time";
 import clear from "../images/clear.svg";
@@ -10,25 +10,24 @@ const ScrollingHeader = ({
   timezone,
   daily,
 }) => {
-  const checkDay = (day) => {
+  const setId = (day) => {
     let id = day;
     if (currentDay === day) id = "highlighted";
     return id;
   };
 
-  const scrollToActiveDay = () => {
+  useEffect(() => {
     let element = document.querySelector("#highlighted");
-    if (element !== null)
-      element.scrollIntoView({ behavior: "smooth", inline: "center" });
-    return ""; // <== this is just to avoid a nag message
-  };
+    element.scrollIntoView({ behavior: "smooth", inline: "center" });
+    // scrolls to current day after render
+  });
 
   return (
     <Header>
       <Scroll>
         {daily.map((day) => (
           <div
-            id={checkDay(day.dt)}
+            id={setId(day.dt)}
             key={day.dt}
             className="date"
             onClick={() => setCurrentDay(day.dt)}
@@ -36,7 +35,6 @@ const ScrollingHeader = ({
             {getDay(unixToLocalTime(day.dt, timezone))}
           </div>
         ))}
-        {scrollToActiveDay()}
       </Scroll>
       <Toggler onClick={toggleDetails}>
         <img src={clear} alt="exit" />
@@ -69,7 +67,7 @@ const Scroll = styled.div`
   }
   .date {
     display: inline-block;
-    padding-right: 1em;
+    padding: 0 .5em;
   }
 `;
 

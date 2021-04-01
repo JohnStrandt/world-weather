@@ -72,7 +72,6 @@ const DayDetails = ({ timezone, data }) => {
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 0.5em;
   .headline {
     display: flex;
     margin: 0.8em 0;

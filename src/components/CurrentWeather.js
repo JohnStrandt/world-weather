@@ -43,7 +43,7 @@ const Current = styled.div`
 
   .city-font {
     font-size: 2rem;
-    /* line-height: 1.2em; */
+    line-height: 1.2em;
   }
   .temp-font {
     font-size: 4rem;
