@@ -21,9 +21,6 @@ const Nav = () => {
   };
 
   const error = useSelector((state) => state.error);
-  // const clearSearch = () => {
-  //   dispatch({ type: "CLEAR_SEARCHED" });
-  // };
 
   return (
     <div>

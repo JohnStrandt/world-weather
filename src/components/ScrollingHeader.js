@@ -10,7 +10,7 @@ const ScrollingHeader = ({
   timezone,
   daily,
 }) => {
-  const setId = (day) => {
+  const idHandler = (day) => {
     let id = day;
     if (currentDay === day) id = "highlighted";
     return id;
@@ -18,8 +18,10 @@ const ScrollingHeader = ({
 
   useEffect(() => {
     let element = document.querySelector("#highlighted");
-    element.scrollIntoView({ behavior: "smooth", inline: "center" });
-    // scrolls to current day after render
+    if(element){
+      element.scrollIntoView({ behavior: "smooth", inline: "center" });
+      // scrolls to current day after render
+    }
   });
 
   return (
@@ -27,7 +29,7 @@ const ScrollingHeader = ({
       <Scroll>
         {daily.map((day) => (
           <div
-            id={setId(day.dt)}
+            id={idHandler(day.dt)}
             key={day.dt}
             className="date"
             onClick={() => setCurrentDay(day.dt)}
@@ -67,7 +69,7 @@ const Scroll = styled.div`
   }
   .date {
     display: inline-block;
-    padding: 0 .5em;
+    padding: 0 0.5em;
   }
 `;
 

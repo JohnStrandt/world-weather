@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { getCurrentTime, dateAndTime } from "../util/time";
+import Alerts from "./Alerts";
 
 const CurrentWeather = ({ location, current }) => {
   let localTime = dateAndTime(getCurrentTime(location.timezone));
@@ -9,11 +10,28 @@ const CurrentWeather = ({ location, current }) => {
   let lowTemp = Math.round(current.low_temp);
   let alerts = current.alerts;
 
+  const [currentTime, setCurrentTime] = useState(localTime);
+
+  // live clock is a running clock that updates local time
+  // clearInterval is a cleanup function necessary to prevent
+  // strange side effects such as multiple instances running.
+  useEffect(() => {
+    const liveClock = setInterval(() => {
+      let now = dateAndTime(getCurrentTime(location.timezone));
+      if (currentTime !== now) {
+        setCurrentTime(now);
+      }
+    }, 1000);
+    return () => {
+      clearInterval(liveClock);
+    };
+  });
+
   return (
     <Current>
       <div>
         <p className="city-font">{location.city}</p>
-        <p className="text-small">{localTime}</p>
+        <p className="text-small">{currentTime}</p>
       </div>
 
       <div className="conditions">
@@ -24,19 +42,20 @@ const CurrentWeather = ({ location, current }) => {
         </p>
       </div>
 
-      {alerts
-        ? alerts.map((alert) => (
-            <div className="alerts" key={alert.event}>
-              <p>{alert.event}</p>
-              {/* alert.description for details */}
-            </div>
-          ))
-        : ""}
+      {alerts && (
+        <>
+          {alerts.map(alert => (
+          <p className="alerts">{alert.event}</p>
+          ))}
+          {/* <Alerts /> */}
+        </>
+      )}
     </Current>
   );
 };
 
 const Current = styled.div`
+  position: relative;
   width: 100%;
   margin: 0 auto;
   text-align: center;
