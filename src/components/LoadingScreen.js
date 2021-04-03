@@ -14,7 +14,7 @@ const LoadingScreen = () => {
     setRunning(false);
   }, 8000);
 
-  if (true) {
+  if (loading) {
     screen = (
       <Loading>
         <h2>Weather App</h2>
