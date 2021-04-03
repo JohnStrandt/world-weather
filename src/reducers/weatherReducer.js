@@ -4,7 +4,7 @@ const initState = {
   current: null,
   daily: [],
   hourly: [],
-  // dataLoaded: false,
+  loading: true,
 };
 
 const weatherReducer = (state = initState, action) => {
@@ -16,18 +16,13 @@ const weatherReducer = (state = initState, action) => {
         current: action.payload.current,
         daily: action.payload.daily,
         hourly: action.payload.hourly,
-        // dataLoaded: true,
+        loading: false,
         error: null,
       };
-    case "CLEAR_SEARCHED":
+    case "SHOW_LOADER":
       return {
         ...state,
-        error: null,
-        location: null,
-        current: null,
-        daily: [],
-        hourly: [],
-        // dataLoaded: false,
+        loading: true,
       };
     case "SEARCH_ERROR":
       return {

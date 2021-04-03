@@ -15,6 +15,7 @@ const CurrentWeather = ({ location, current }) => {
   // live clock is a running clock that updates local time
   // clearInterval is a cleanup function necessary to prevent
   // strange side effects such as multiple instances running.
+  // after changing locations...
   useEffect(() => {
     const liveClock = setInterval(() => {
       let now = dateAndTime(getCurrentTime(location.timezone));
@@ -45,7 +46,8 @@ const CurrentWeather = ({ location, current }) => {
       {alerts && (
         <>
           {alerts.map(alert => (
-          <p className="alerts">{alert.event}</p>
+          <p className="alerts" key={alert.event}>
+            {alert.event}</p>
           ))}
           {/* <Alerts /> */}
         </>

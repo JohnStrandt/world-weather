@@ -1,32 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 // Components
 import CurrentWeather from "../components/CurrentWeather";
 import HourlyTemps from "../components/HourlyTemps";
 import DaySummary from "../components/DaySummary";
 import DayDetails from "../components/DayDetails";
 import ScrollingHeader from "../components/ScrollingHeader";
-import { getGPSWeather } from "../actions/weatherAction";
 
 const Home = () => {
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // get geolocation on startup
-    const success = (position) => {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
-      dispatch(getGPSWeather(lat, lon));
-    };
-    const fail = (error) => {
-      console.error(error);
-    };
-    navigator.geolocation.getCurrentPosition(success, fail);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const location = useSelector((state) => state.location);
   const current = useSelector((state) => state.current);
   const daily = useSelector((state) => state.daily);
@@ -53,13 +35,15 @@ const Home = () => {
     <Page>
       <DynamicMargin />
 
-      {location && current && (  
-      <CurrentWeather location={location} current={current} />)}
+      {location && current && (
+        <CurrentWeather location={location} current={current} />
+      )}
 
       <DynamicMargin />
 
       {location && hourly && (
-      <HourlyTemps timezone={location.timezone} hourly={hourly} />)}
+        <HourlyTemps timezone={location.timezone} hourly={hourly} />
+      )}
 
       <DynamicMargin />
 
@@ -78,16 +62,16 @@ const Home = () => {
       )}
       {showDetails && daily && currentData && (
         <div>
-            <ScrollingHeader
-              toggleDetails={toggler}
-              currentDay={currentDay}
-              setCurrentDay={setCurrentDay}
-              timezone={location.timezone}
-              daily={daily}
-            />
-            <DayDetails timezone={location.timezone} data={currentData} />
+          <ScrollingHeader
+            toggleDetails={toggler}
+            currentDay={currentDay}
+            setCurrentDay={setCurrentDay}
+            timezone={location.timezone}
+            daily={daily}
+          />
+          <DayDetails timezone={location.timezone} data={currentData} />
         </div>
-      )} 
+      )}
     </Page>
   );
 };
