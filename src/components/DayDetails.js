@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { iconStyle } from "../util/styles";
 
 import { unixToLocalTime, formatTime } from "../util/time";
+import { windDirection } from "../util/utilities";
 
 const DayDetails = ({ timezone, data }) => {
   let _sunrise = formatTime(unixToLocalTime(data.sunrise, timezone));
@@ -10,6 +11,7 @@ const DayDetails = ({ timezone, data }) => {
   let highTemp = Math.round(data.temp.max);
   let lowTemp = Math.round(data.temp.min);
   let windSpeed = Math.round(data.wind_speed);
+  let wind_dir = windDirection(data.wind_deg);
   let hgPressure = Math.round(data.pressure / 33.8639);
   let precip = Math.round(data.pop * 100);
   let dew = Math.round(data.dew_point);
@@ -29,9 +31,12 @@ const DayDetails = ({ timezone, data }) => {
       </div>
       <ul className="details">
         <li>
-          wind {windSpeed}mph {data.wind_deg}°
+          wind {wind_dir} {windSpeed}
+          <span className="small-text">mph</span>
         </li>
-        <li>{hgPressure}"Hg</li>
+        <li>
+          BP {hgPressure}"<span className="small-text">Hg</span>
+        </li>
         <li>{data.humidity}% Humidity</li>
         <li>Dew Point {dew}°</li>
         <li>UV {data.uvi}</li>

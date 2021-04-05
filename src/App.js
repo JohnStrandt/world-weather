@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
+// import styled from "styled-components";
 import GlobalStyles from "./components/GlobalStyles";
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
@@ -11,6 +11,7 @@ import { showLoader, getGPSWeather } from "./actions/weatherAction";
 
 function App() {
 
+  const [GPSError, setGPSError] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,23 +24,21 @@ function App() {
     };
     const fail = (error) => {
       console.error(error);
+      setGPSError(true);
     };
     navigator.geolocation.getCurrentPosition(success, fail);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Main>
+    <div>
       <GlobalStyles />
       <Nav />
-      <LoadingScreen />
+      <LoadingScreen GPSError={GPSError}/>
       <Home />
-    </Main>
+    </div>
   );
 }
 
-const Main = styled.div`
-  position: relative;
-`;
 
 export default App;

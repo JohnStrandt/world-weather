@@ -1,35 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 import globe from "../images/globe.png";
 import PuffLoader from "react-spinners/PuffLoader";
 
-const LoadingScreen = () => {
-  const [timerRunning, setRunning] = useState(true);
+const LoadingScreen = ({ GPSError }) => {
   const loading = useSelector((state) => state.loading);
   let screen = null;
-
-  setTimeout(function () {
-    setRunning(false);
-  }, 8000);
 
   if (loading) {
     screen = (
       <Loading>
         <h2>Weather App</h2>
-        <PuffLoader
-          color={"#fff"}
-          loading={loading && timerRunning}
-          // css={override}
-          size={50}
-        />
+
+        <PuffLoader color={"#fff"} loading={loading && !GPSError} size={50} />
         <img src={globe} alt="globe" />
-        <p>Using GPS to find your current location...</p>
-        <p>
-          If GPS is not enabled, you will need to search your locations
-          manually.
-        </p>
+
+        {!GPSError && <p>loading...</p>}
+
+        {GPSError && (
+          <div>
+            <p style={{ color: "var(--color-accent)" }}>GPS Error</p>
+            <p>
+              If location permissions are not enabled for this site on your
+              browser, you will need to enter your location manually.
+            </p>
+          </div>
+        )}
       </Loading>
     );
   }
@@ -47,7 +45,7 @@ const Loading = styled.div`
   h2 {
     font-weight: 100;
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5em;
   }
   p {
     margin-bottom: 0.5em;
