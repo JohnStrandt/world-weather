@@ -77,6 +77,7 @@ const Home = () => {
 };
 
 const Page = styled.div`
+  position: relative;
   margin: 0 auto;
   padding: 0 0.5em;
   width: min(100%, 550px);
