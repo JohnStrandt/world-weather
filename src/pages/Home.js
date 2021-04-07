@@ -1,42 +1,42 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 // Components
-import CurrentWeather from "../components/CurrentWeather";
-import HourlyTemps from "../components/HourlyTemps";
-import DaySummary from "../components/DaySummary";
-import DayDetails from "../components/DayDetails";
-import ScrollingHeader from "../components/ScrollingHeader";
+import {
+  CurrentWeather,
+  HourlyTemps,
+  DaySummary,
+  ScrollingHeader,
+  DayDetails,
+} from "../components";
 
 const Home = () => {
-  const location = useSelector((state) => state.location);
-  const current = useSelector((state) => state.current);
-  const daily = useSelector((state) => state.daily);
-  const hourly = useSelector((state) => state.hourly);
-  // Forecast States
+  // state data for components
+  const { location, current, daily, hourly } = useSelector((state) => state);
+  // Forecast Details State 
   const [currentDay, setCurrentDay] = useState(null);
   const [currentData, setCurrentData] = useState([]);
-  // toggle forecast detail state
+  // used to toggle Forecast Details render
   const [showDetails, setShowDetails] = useState(false);
-
-  const toggler = () => {
-    setShowDetails(!showDetails);
-  };
-
-  useEffect(() => {
-    setShowDetails(false);
-  }, [location]);
 
   useEffect(() => {
     setCurrentData(daily.find((day) => day.dt === currentDay));
   }, [currentDay, daily]);
+
+  useEffect(() => {
+    setShowDetails(false);
+  }, [location]);// hide details on location change
+
+  const toggleDetails = () => {
+    setShowDetails(!showDetails);
+  };
 
   return (
     <Page>
       <DynamicMargin />
 
       {location && current && (
-        <CurrentWeather location={location} current={current}/>
+        <CurrentWeather location={location} current={current} />
       )}
 
       <DynamicMargin />
@@ -52,7 +52,7 @@ const Home = () => {
           {daily.map((day) => (
             <DaySummary
               key={day.dt}
-              toggleDetails={toggler}
+              toggleDetails={toggleDetails}
               setCurrentDay={setCurrentDay}
               timezone={location.timezone}
               day={day}
@@ -63,7 +63,7 @@ const Home = () => {
       {showDetails && daily && currentData && (
         <div>
           <ScrollingHeader
-            toggleDetails={toggler}
+            toggleDetails={toggleDetails}
             currentDay={currentDay}
             setCurrentDay={setCurrentDay}
             timezone={location.timezone}
@@ -77,6 +77,7 @@ const Home = () => {
 };
 
 const Page = styled.div`
+  margin: 0 auto;
   padding: 0 0.5em;
   width: min(100%, 550px);
 `;

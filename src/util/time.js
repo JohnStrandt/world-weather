@@ -48,7 +48,7 @@ export const getWeekday = (dateString) => {
     default:
       break;
   }
-
+  // console.log(weekday);
   return weekday;
 };
 

@@ -7,16 +7,16 @@ import Nav from "./components/Nav";
 import LoadingScreen from "./components/LoadingScreen";
 import Alerts from "./components/Alerts";
 
-import { showLoader, getGPSWeather } from "./actions/weatherAction";
+import { getGPSWeather } from "./actions/weatherAction";
 
 function App() {
-
   const [GPSError, setGPSError] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     // get geolocation on startup to find local weather
-    dispatch(showLoader());
+    // dispatch(showLoader());
+    dispatch({ type: "SHOW_LOADER" });
     const success = (position) => {
       let lat = position.coords.latitude;
       let lon = position.coords.longitude;
@@ -35,11 +35,10 @@ function App() {
       <GlobalStyles />
       <Alerts />
       <Nav />
-      <LoadingScreen GPSError={GPSError}/>
+      <LoadingScreen GPSError={GPSError} />
       <Home />
     </div>
   );
 }
-
 
 export default App;

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { getCurrentTime, dateAndTime } from "../util/time";
 import { windDirection } from "../util/utilities";
+import arrow from "../images/double_arrow_accent.svg";
 
 const CurrentWeather = ({ location, current }) => {
   
@@ -14,10 +15,6 @@ const CurrentWeather = ({ location, current }) => {
   const [currentTime, setCurrentTime] = useState(localTime);
   const dispatch = useDispatch();
 
-  // live clock is a running clock that updates local time
-  // clearInterval is the cleanup function necessary to prevent
-  // strange side effects such as multiple instances running
-  // after changing locations...
   useEffect(() => {
     const liveClock = setInterval(() => {
       let now = dateAndTime(getCurrentTime(location.timezone));
@@ -27,6 +24,7 @@ const CurrentWeather = ({ location, current }) => {
     }, 1000);
     return () => {
       clearInterval(liveClock);
+      // cleanup function clears instances of clock when changing locations
     };
   });
 
@@ -35,7 +33,6 @@ const CurrentWeather = ({ location, current }) => {
       type: "TOGGLE_SHOW_ALERTS",
     });
   };
-
 
   return (
     <Current>
@@ -56,7 +53,7 @@ const CurrentWeather = ({ location, current }) => {
         <div className="alerts" onClick={alertClickHandler}>
           {alerts.map((alert) => (
             <p key={alert.event}>
-              {alert.event}
+              {alert.event} <img src={arrow} alt="details" />
             </p>
           ))}
         </div>
@@ -83,9 +80,18 @@ const Current = styled.div`
     font-size: 0.9em;
   }
   .alerts {
+    position: relative;
     font-weight: normal;
     color: var(--color-accent);
     line-height: 1.2em;
+    margin: .5em 0;
+  }
+  .alerts img {
+    width: 1em;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
   }
   .conditions {
     padding: 0;

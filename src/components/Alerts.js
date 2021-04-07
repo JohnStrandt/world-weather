@@ -24,6 +24,8 @@ const Alerts = () => {
             <p>{alert.description}</p>
           </Alert>
         ))}
+
+        <footer className="foot-note"><h3>tap anywhere to exit</h3></footer>
       </AlertPage>
     );
   }
@@ -31,22 +33,37 @@ const Alerts = () => {
 };
 
 const AlertPage = styled.div`
+  display: flex;
+  flex-direction: column;
   z-index: 10;
   position: absolute;
   height: 100%;
   width: 100%;
-  top: 0;
-  background: rgba(10, 10, 10, 0.9);
   color: white;
-  padding: 1em 0.5rem;
   text-align: left;
+  background: rgba(10, 10, 10, 0.9);
+  padding: 1em 0.5rem 0 0.5rem;
   overflow: scroll;
   h2 {
     color: var(--color-accent);
+    font-weight: 300;
+  }
+  .foot-note {
+    background: rgba(10, 10, 10, 1);
+    text-align: center;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    bottom: 0;
+  }
+  h3 {
+    font-size: 1.4em;
+    font-weight: 100;
+    line-height: 2em;
   }
 `;
 
 const Alert = styled.div`
+  flex: 1 0 auto; // flex: grow shrink basis -> keep footer on bottom
   margin: 1.5rem 0;
 `;
 
