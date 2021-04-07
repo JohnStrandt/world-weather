@@ -36,7 +36,7 @@ const Home = () => {
       <DynamicMargin />
 
       {location && current && (
-        <CurrentWeather location={location} current={current} />
+        <CurrentWeather location={location} current={current}/>
       )}
 
       <DynamicMargin />

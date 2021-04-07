@@ -4,7 +4,9 @@ const initState = {
   current: null,
   daily: [],
   hourly: [],
+  alerts: [],
   loading: true,
+  showAlerts: false,
 };
 
 const weatherReducer = (state = initState, action) => {
@@ -16,6 +18,7 @@ const weatherReducer = (state = initState, action) => {
         current: action.payload.current,
         daily: action.payload.daily,
         hourly: action.payload.hourly,
+        alerts: action.payload.current.alerts,
         loading: false,
         error: null,
       };
@@ -28,6 +31,11 @@ const weatherReducer = (state = initState, action) => {
       return {
         ...state,
         error: action.payload.error,
+      };
+    case "TOGGLE_SHOW_ALERTS":
+      return {
+        ...state,
+        showAlerts: !state.showAlerts,
       };
     default:
       return { ...state };

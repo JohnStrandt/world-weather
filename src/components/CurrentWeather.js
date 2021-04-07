@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { getCurrentTime, dateAndTime } from "../util/time";
 import { windDirection } from "../util/utilities";
-import Alerts from "./Alerts";
 
 const CurrentWeather = ({ location, current }) => {
+  
   let localTime = dateAndTime(getCurrentTime(location.timezone));
   let currentTemp = Math.round(current.temp);
   let alerts = current.alerts;
   let wind_speed = Math.round(current.wind_speed);
   let wind_dir = windDirection(current.wind_deg);
-
   const [currentTime, setCurrentTime] = useState(localTime);
+  const dispatch = useDispatch();
 
   // live clock is a running clock that updates local time
   // clearInterval is the cleanup function necessary to prevent
@@ -29,6 +30,13 @@ const CurrentWeather = ({ location, current }) => {
     };
   });
 
+  const alertClickHandler = () =>{
+    dispatch({
+      type: "TOGGLE_SHOW_ALERTS",
+    });
+  };
+
+
   return (
     <Current>
       <div>
@@ -45,14 +53,13 @@ const CurrentWeather = ({ location, current }) => {
       </div>
 
       {alerts && (
-        <>
+        <div className="alerts" onClick={alertClickHandler}>
           {alerts.map((alert) => (
-            <p className="alerts" key={alert.event}>
+            <p key={alert.event}>
               {alert.event}
             </p>
           ))}
-          {/* <Alerts /> */}
-        </>
+        </div>
       )}
     </Current>
   );

@@ -1,14 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-
-import { unixToLocalTime, getWeekday } from "../util/time";
 import { iconStyle } from "../util/styles";
 import next from "../images/next.svg";
 
+import {
+  unixToLocalTime,
+  getWeekday,
+  getCurrentTime,
+  getDay,
+} from "../util/time";
+
 const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
-  let weekday = getWeekday(unixToLocalTime(day.dt, timezone));
+  let localTime = unixToLocalTime(day.dt, timezone);
+  let weekday = getWeekday(localTime);
   let high = Math.round(day.temp.max);
   let low = Math.round(day.temp.min);
+
+  // dates compared in format: Tue, Apr 06
+  let currentDay = getDay(localTime);
+  let today = getDay(getCurrentTime(timezone));
+  if (currentDay === today) {
+    weekday = "Today";
+  }
 
   const clickHandler = () => {
     setCurrentDay(day.dt);
