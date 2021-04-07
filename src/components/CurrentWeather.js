@@ -6,7 +6,6 @@ import { windDirection } from "../util/utilities";
 import arrow from "../images/double_arrow_accent.svg";
 
 const CurrentWeather = ({ location, current }) => {
-  
   let localTime = dateAndTime(getCurrentTime(location.timezone));
   let currentTemp = Math.round(current.temp);
   let alerts = current.alerts;
@@ -28,7 +27,8 @@ const CurrentWeather = ({ location, current }) => {
     };
   });
 
-  const alertClickHandler = () =>{
+  const alertClickHandler = () => {
+    document.body.style.overflow = "hidden";
     dispatch({
       type: "TOGGLE_SHOW_ALERTS",
     });
@@ -80,11 +80,12 @@ const Current = styled.div`
     font-size: 0.9em;
   }
   .alerts {
+    cursor: pointer;
     position: relative;
     font-weight: normal;
     color: var(--color-accent);
     line-height: 1.2em;
-    margin: .5em 0;
+    margin: 0.5em 0;
   }
   .alerts img {
     width: 1em;

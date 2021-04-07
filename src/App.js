@@ -31,7 +31,8 @@ function App() {
   }, []);
 
   return (
-    <div>
+    // <div style={{position: "relative"}}></div>
+    <div style={{position: "relative"}}>
       <GlobalStyles />
       <Alerts />
       <Nav />
@@ -40,5 +41,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

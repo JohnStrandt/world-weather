@@ -13,7 +13,7 @@ import {
 const Home = () => {
   // state data for components
   const { location, current, daily, hourly } = useSelector((state) => state);
-  // Forecast Details State 
+  // Forecast Details State
   const [currentDay, setCurrentDay] = useState(null);
   const [currentData, setCurrentData] = useState([]);
   // used to toggle Forecast Details render
@@ -25,7 +25,7 @@ const Home = () => {
 
   useEffect(() => {
     setShowDetails(false);
-  }, [location]);// hide details on location change
+  }, [location]); // hide details on location change
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);
