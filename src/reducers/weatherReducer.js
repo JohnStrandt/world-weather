@@ -22,11 +22,6 @@ const weatherReducer = (state = initState, action) => {
         loading: false,
         error: null,
       };
-    case "SHOW_LOADER":
-      return {
-        ...state,
-        loading: true,
-      };
     case "SEARCH_ERROR":
       return {
         ...state,

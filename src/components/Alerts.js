@@ -11,7 +11,7 @@ const Alerts = () => {
     dispatch({
       type: "TOGGLE_SHOW_ALERTS",
     });
-    document.body.style.overflow = "auto";
+    // document.body.style.overflow = "auto";
   };
 
   let alertScreen = null;
@@ -25,8 +25,7 @@ const Alerts = () => {
             <p>{alert.description}</p>
           </Alert>
         ))}
-
-        <footer className="foot-note">
+        <footer>
           <h3>tap anywhere to exit</h3>
         </footer>
       </AlertPage>
@@ -36,7 +35,6 @@ const Alerts = () => {
 };
 
 const AlertPage = styled.div`
-  position: absolute;// ** scroll
   display: flex;
   flex-direction: column;
   z-index: 10;
@@ -47,18 +45,16 @@ const AlertPage = styled.div`
   color: white;
   text-align: left;
   background: rgba(10, 10, 10, 0.9);
-  padding: 1em 0.5rem 0 0.5rem;
-
+  footer {
+    background: rgba(10, 10, 10, 1);
+    text-align: center;
+    bottom: 0;
+    position: sticky;
+    position: -webkit-sticky; /* Safari */
+  }
   h2 {
     color: var(--color-accent);
     font-weight: 300;
-  }
-  .foot-note {
-    background: rgba(10, 10, 10, 1);
-    text-align: center;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    bottom: 0;
   }
   h3 {
     font-size: 1.4em;
@@ -70,6 +66,7 @@ const AlertPage = styled.div`
 const Alert = styled.div`
   flex: 1 0 auto; // flex: grow shrink basis -> keep footer on bottom
   margin: 1.5rem 0;
+  padding: 1em;
 `;
 
 export default Alerts;

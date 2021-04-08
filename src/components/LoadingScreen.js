@@ -1,11 +1,30 @@
-import React from "react";
-import { useSelector } from "react-redux";
-
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getGPSWeather } from "../actions/weatherAction";
 import styled from "styled-components";
 import globe from "../images/globe.png";
 import PuffLoader from "react-spinners/PuffLoader";
 
-const LoadingScreen = ({ GPSError }) => {
+const LoadingScreen = () => {
+
+  const [GPSError, setGPSError] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // get geolocation on startup to find local weather
+    const success = (position) => {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      dispatch(getGPSWeather(lat, lon));
+    };
+    const fail = (error) => {
+      console.error(error);
+      setGPSError(true);
+    };
+    navigator.geolocation.getCurrentPosition(success, fail);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const loading = useSelector((state) => state.loading);
   let screen = null;
 

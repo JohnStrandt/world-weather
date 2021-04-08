@@ -31,7 +31,12 @@ const Home = () => {
     setShowDetails(!showDetails);
   };
 
-  return (
+  const showAlerts = useSelector((state) => state.showAlerts);
+  let home = '';
+  
+  // return (
+    if (!showAlerts) 
+    home = (
     <Page>
       <DynamicMargin />
 
@@ -74,10 +79,10 @@ const Home = () => {
       )}
     </Page>
   );
+  return home;
 };
 
 const Page = styled.div`
-  position: relative;
   margin: 0 auto;
   padding: 0 0.5em;
   width: min(100%, 550px);
