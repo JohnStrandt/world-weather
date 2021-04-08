@@ -11,7 +11,6 @@ const Alerts = () => {
     dispatch({
       type: "TOGGLE_SHOW_ALERTS",
     });
-    // document.body.style.overflow = "auto";
   };
 
   let alertScreen = null;
@@ -35,7 +34,7 @@ const Alerts = () => {
 };
 
 const AlertPage = styled.div`
-  position: fixed;// did this finaly do it?
+  position: fixed;// key to cover screen
   display: flex;
   flex-direction: column;
   z-index: 10;
@@ -64,7 +63,8 @@ const AlertPage = styled.div`
 `;
 
 const Alert = styled.div`
-  flex: 1 0 auto; // flex: grow shrink basis -> keep footer on bottom
+  flex: 1 0 auto; 
+  // flex: grow shrink basis -> keep footer on bottom
   padding: 2em 1em;
 `;
 

@@ -50,11 +50,13 @@ const CurrentWeather = ({ location, current }) => {
       </div>
 
       {alerts && (
-        <div className="alerts" onClick={alertClickHandler}>
+        <div className="alerts">
           {alerts.map((alert) => (
-            <p key={alert.event}>
-              {alert.event} <img src={arrow} alt="details" />
-            </p>
+            <div className="alert" onClick={alertClickHandler}>
+              <p key={alert.event}>
+                {alert.event} <img src={arrow} alt="details" />
+              </p>
+            </div>
           ))}
         </div>
       )}
@@ -79,14 +81,16 @@ const Current = styled.div`
     font-size: 0.9em;
   }
   .alerts {
-    cursor: pointer;
-    position: relative;
-    font-weight: normal;
-    color: var(--color-accent);
-    line-height: 1.2em;
     margin: 0.5em 0;
   }
-  .alerts img {
+  .alert {
+    cursor: pointer;
+    position: relative;
+    font-weight: 300;
+    color: var(--color-accent);
+    line-height: 1.2em;
+  }
+  .alert img {
     width: 1em;
     position: absolute;
     margin: auto;

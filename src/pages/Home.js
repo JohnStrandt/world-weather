@@ -30,13 +30,8 @@ const Home = () => {
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
-
-  // const showAlerts = useSelector((state) => state.showAlerts);
-  // let home = '';
   
   return (
-    // if (!showAlerts) 
-    // home = (
     <Page>
 
       {location && current && (
@@ -78,7 +73,6 @@ const Home = () => {
       )}
     </Page>
   );
-  // return home;
 };
 
 const Page = styled.div`
