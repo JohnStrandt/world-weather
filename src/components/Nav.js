@@ -10,13 +10,14 @@ const Nav = () => {
   const [textInput, setTextInput] = useState("");
 
   const inputHandler = (e) => {
-    e.preventDefault();
     setTextInput(e.target.value);
   };
 
   const submitSearch = (e) => {
     e.preventDefault();
     dispatch(getWeather(textInput));
+    document.getElementById("searchField").blur();
+    // blur dismisses keyboard on mobile when user hits enter
     setTextInput("");
   };
 
@@ -26,6 +27,7 @@ const Nav = () => {
     <div>
       <StyledForm>
         <input
+          id="searchField"
           onChange={inputHandler}
           value={textInput}
           type="text"
@@ -43,7 +45,7 @@ const Nav = () => {
 const Error = styled.p`
   position: absolute;
   width: 100%;
-  padding-top: .3em;
+  padding-top: 0.3em;
   text-align: center;
   color: var(--color-accent);
   font-weight: 500;
