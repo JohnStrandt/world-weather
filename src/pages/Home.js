@@ -31,12 +31,12 @@ const Home = () => {
     setShowDetails(!showDetails);
   };
 
-  const showAlerts = useSelector((state) => state.showAlerts);
-  let home = '';
+  // const showAlerts = useSelector((state) => state.showAlerts);
+  // let home = '';
   
-  // return (
-    if (!showAlerts) 
-    home = (
+  return (
+    // if (!showAlerts) 
+    // home = (
     <Page>
 
       {location && current && (
@@ -78,24 +78,21 @@ const Home = () => {
       )}
     </Page>
   );
-  return home;
+  // return home;
 };
 
 const Page = styled.div`
-  min-height: 90vh;
+  min-height: 89vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
   width: min(100%, 550px);
 `;
 
 const DynamicMargin = styled.div`
-  margin-top: 3vh;
-  @media only screen and (min-height: 700px) {
-    margin-top: 4vh;
-  }
+  margin-top: 4vh;
 `;
 
 export default Home;

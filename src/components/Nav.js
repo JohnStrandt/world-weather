@@ -25,6 +25,8 @@ const Nav = () => {
 
   return (
     <Search>
+      {error && 
+      <Error>"{error.city}" not found</Error>}
       <StyledForm>
         <input
           id="searchField"
@@ -37,30 +39,28 @@ const Nav = () => {
           GO!
         </button>
       </StyledForm>
-      {error && <Error>sorry, "{error.city}" not found</Error>}
+
     </Search>
   );
 };
 
 const Search = styled.div`
-  height: 10vh;
+  height: 11vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   @media only screen and (min-height: 700px) {
     padding-top: 5vh;
   }
 `;
 
 const Error = styled.p`
-  position: absolute;
-  padding-top: 5em;
+  padding-bottom: .7em;
   text-align: center;
   color: var(--color-accent);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 0.8rem;
-
 `;
 
 const StyledForm = styled.form`
