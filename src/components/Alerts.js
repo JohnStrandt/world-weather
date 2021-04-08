@@ -64,7 +64,7 @@ const AlertPage = styled.div`
 `;
 
 const Alert = styled.div`
-  /* flex: 1 0 auto; // flex: grow shrink basis -> keep footer on bottom */
+  flex: 1 0 auto; // flex: grow shrink basis -> keep footer on bottom
   padding: 2em 1em;
 `;
 
