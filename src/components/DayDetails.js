@@ -79,7 +79,7 @@ const Card = styled.div`
   flex-direction: column;
   .headline {
     display: flex;
-    margin: 0.8em 0;
+    padding: 0.8em 0;
     justify-content: center;
     line-height: 1.5em;
   }
@@ -88,7 +88,7 @@ const Card = styled.div`
     padding-right: 1em;
   }
   .details {
-    margin-bottom: 0.8em;
+    padding-bottom: 0.8em;
     display: flex;
     justify-content: center;
     line-height: 1.5em;
@@ -99,7 +99,7 @@ const Card = styled.div`
   .sunTimes {
     display: flex;
     justify-content: space-between;
-    margin: 0.8em 0;
+    padding: 0.8em 0 0 0;
   }
   ul {
     display: flex;

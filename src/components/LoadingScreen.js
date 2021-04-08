@@ -53,7 +53,7 @@ const LoadingScreen = () => {
 };
 
 const Loading = styled.div`
-  height: 90vh;
+  height: 89vh;
   width: 100%;
   padding: 0 2em;
   display: flex;

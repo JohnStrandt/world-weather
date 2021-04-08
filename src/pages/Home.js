@@ -82,15 +82,15 @@ const Home = () => {
 };
 
 const Page = styled.div`
-  min-height: 89vh;
+  min-height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  padding: 1rem 0.5rem;
+  padding: 1.7rem 0.5rem 1rem 0.5rem;
   width: min(100%, 550px);
 `;
-
+// drop the dynamic margins??
 const DynamicMargin = styled.div`
   margin-top: 4vh;
 `;
