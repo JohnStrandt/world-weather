@@ -17,14 +17,14 @@ const Nav = () => {
     e.preventDefault();
     dispatch(getWeather(textInput));
     document.getElementById("searchField").blur();
-    // blur dismisses keyboard on mobile when user hits enter
+    // blur - dismiss keyboard on mobile if user hits enter instead of submit
     setTextInput("");
   };
 
   const error = useSelector((state) => state.error);
 
   return (
-    <div>
+    <Search>
       <StyledForm>
         <input
           id="searchField"
@@ -38,34 +38,38 @@ const Nav = () => {
         </button>
       </StyledForm>
       {error && <Error>sorry, "{error.city}" not found</Error>}
-    </div>
+    </Search>
   );
 };
 
+const Search = styled.div`
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (min-height: 700px) {
+    padding-top: 5vh;
+  }
+`;
+
 const Error = styled.p`
   position: absolute;
-  width: 100%;
-  padding-top: 0.3em;
+  padding-top: 5em;
   text-align: center;
   color: var(--color-accent);
   font-weight: 500;
   font-size: 0.8rem;
+
 `;
 
 const StyledForm = styled.form`
-  position: relative;
-  padding-top: 1.5em;
-  @media only screen and (min-height: 700px) {
-    padding-top: 5vh;
-  }
   display: flex;
-  justify-content: center;
-
   button {
     background: transparent;
     border: solid 1px white;
     border-radius: 5px;
-    padding: 0 1rem;
+    padding: .4em 1em;
     color: white;
     margin-left: 0.5rem;
   }

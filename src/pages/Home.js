@@ -38,7 +38,6 @@ const Home = () => {
     if (!showAlerts) 
     home = (
     <Page>
-      <DynamicMargin />
 
       {location && current && (
         <CurrentWeather location={location} current={current} />
@@ -83,13 +82,17 @@ const Home = () => {
 };
 
 const Page = styled.div`
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0 auto;
-  padding: 0 0.5em;
+  padding: 0.5rem;
   width: min(100%, 550px);
 `;
 
 const DynamicMargin = styled.div`
-  margin-top: 1.4rem;
+  margin-top: 3vh;
   @media only screen and (min-height: 700px) {
     margin-top: 4vh;
   }

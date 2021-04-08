@@ -63,7 +63,7 @@ const CurrentWeather = ({ location, current }) => {
 };
 
 const Current = styled.div`
-  position: relative;
+  /* position: relative; */
   width: 100%;
   margin: 0 auto;
   text-align: center;

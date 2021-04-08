@@ -6,7 +6,6 @@ import globe from "../images/globe.png";
 import PuffLoader from "react-spinners/PuffLoader";
 
 const LoadingScreen = () => {
-
   const [GPSError, setGPSError] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,7 +30,7 @@ const LoadingScreen = () => {
   if (loading) {
     screen = (
       <Loading>
-        <h2>Weather App</h2>
+        <h2>Weather Vane</h2>
 
         <PuffLoader color={"#fff"} loading={loading && !GPSError} size={50} />
         <img src={globe} alt="globe" />
@@ -54,7 +53,7 @@ const LoadingScreen = () => {
 };
 
 const Loading = styled.div`
-  height: 80vh;
+  height: 90vh;
   width: 100%;
   padding: 0 2em;
   display: flex;
