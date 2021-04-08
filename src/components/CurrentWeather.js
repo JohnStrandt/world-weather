@@ -86,7 +86,7 @@ const Current = styled.div`
   .alert {
     cursor: pointer;
     position: relative;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--color-accent);
     line-height: 1.2em;
   }

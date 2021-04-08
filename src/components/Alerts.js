@@ -25,7 +25,7 @@ const Alerts = () => {
           </Alert>
         ))}
         <footer>
-          <h3>tap anywhere to exit</h3>
+          <h3>tap anywhere to close</h3>
         </footer>
       </AlertPage>
     );
@@ -34,7 +34,7 @@ const Alerts = () => {
 };
 
 const AlertPage = styled.div`
-  position: fixed;// key to cover screen
+  position: fixed; // key to cover screen
   display: flex;
   flex-direction: column;
   z-index: 10;
@@ -42,6 +42,7 @@ const AlertPage = styled.div`
   width: 100%;
   overflow-y: scroll;
   color: white;
+  line-height: 1.5rem;
   text-align: left;
   background: rgba(10, 10, 10, 0.9);
   footer {
@@ -54,6 +55,7 @@ const AlertPage = styled.div`
   h2 {
     color: var(--color-accent);
     font-weight: 300;
+    line-height: 1.5;
   }
   h3 {
     font-size: 1.4em;
@@ -63,7 +65,7 @@ const AlertPage = styled.div`
 `;
 
 const Alert = styled.div`
-  flex: 1 0 auto; 
+  flex: 1 0 auto;
   // flex: grow shrink basis -> keep footer on bottom
   padding: 2em 1em;
 `;
