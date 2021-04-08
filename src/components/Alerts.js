@@ -35,10 +35,10 @@ const Alerts = () => {
 };
 
 const AlertPage = styled.div`
+  position: fixed;// did this finaly do it?
   display: flex;
   flex-direction: column;
   z-index: 10;
-  position: absolute;
   height: 100%;
   width: 100%;
   overflow-y: scroll;
@@ -64,9 +64,8 @@ const AlertPage = styled.div`
 `;
 
 const Alert = styled.div`
-  flex: 1 0 auto; // flex: grow shrink basis -> keep footer on bottom
-  margin: 1.5rem 0;
-  padding: 1em;
+  /* flex: 1 0 auto; // flex: grow shrink basis -> keep footer on bottom */
+  padding: 2em 1em;
 `;
 
 export default Alerts;
