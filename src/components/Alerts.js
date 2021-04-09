@@ -45,8 +45,9 @@ const AlertPage = styled.div`
   line-height: 1.5rem;
   text-align: left;
   background: rgba(10, 10, 10, 0.9);
+  /* background: rgba(1, 70, 174, 0.9); */
   footer {
-    background: rgba(10, 10, 10, 1);
+    background: black;
     text-align: center;
     bottom: 0;
     position: sticky;

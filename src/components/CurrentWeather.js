@@ -52,7 +52,7 @@ const CurrentWeather = ({ location, current }) => {
       {alerts && (
         <div className="alerts">
           {alerts.map((alert) => (
-            <div className="alert" onClick={alertClickHandler}>
+            <div className="alert" onClick={alertClickHandler} key={alert.event}>
               <p key={alert.event}>
                 {alert.event} <img src={arrow} alt="details" />
               </p>

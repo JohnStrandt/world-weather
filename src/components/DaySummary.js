@@ -54,6 +54,9 @@ const Day = styled.div`
   .hilo {
     display: flex;
     gap: 1em;
+    @supports (-webkit-touch-callout: none) {
+      justify-content: space-evenly;
+    }
   }
   .owi {
     padding-top: 0.5em;

@@ -4,6 +4,7 @@ import mobileSky from "../images/mobile-sky.jpg";
 const GlobalStyles = createGlobalStyle`
 
 :root {
+  --color-sky: #0146AE;
   --color-hover: #0247a8;
   --color-accent: #ff7676;
   --color-sun: #F7EA21;
@@ -29,6 +30,7 @@ body{
   font-weight: 200;
   color: white;
 
+  /* background-color: var(----color-sky); */
   background-image: url(${largeSky});
   background-repeat: no-repeat;
   background-size: cover;

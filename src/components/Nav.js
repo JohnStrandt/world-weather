@@ -37,8 +37,7 @@ const Nav = () => {
           GO!
         </button>
       </StyledForm>
-      {error && 
-      <Error>"{error.city}" not found</Error>}
+      {error && <Error>"{error.city}" not found</Error>}
     </Search>
   );
 };
@@ -66,7 +65,7 @@ const StyledForm = styled.form`
     background: transparent;
     border: solid 1px white;
     border-radius: 5px;
-    padding: .4em 1em;
+    padding: 0.4em 1em;
     color: white;
     margin-left: 0.5rem;
   }
