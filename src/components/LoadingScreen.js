@@ -32,8 +32,13 @@ const LoadingScreen = () => {
       <Loading>
         <h2>Weather Vane</h2>
 
-        <div className="globe">
-          <PuffLoader color={"#fff"} loading={loading && !GPSError} size={50} />
+        <div className="hero">
+          <div>
+          <PuffLoader 
+          color={"#fff"} 
+          loading={loading && !GPSError} 
+          size={80} />
+          </div>
           <img src={globe} alt="globe" />
 
           {!GPSError && <p>loading...</p>}
@@ -58,7 +63,7 @@ const Loading = styled.div`
   height: 89vh;
   width: 100%;
   padding: 0 2em;
-  .globe {
+  .hero {
     margin-top: 13vh;
     text-align: center;
   }
@@ -76,7 +81,7 @@ const Loading = styled.div`
     line-height: 1.5em;
   }
   img {
-    max-width: 40%;
+    max-width: 45%;
     margin-bottom: 2rem;
   }
 `;
