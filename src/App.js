@@ -9,7 +9,6 @@ import Alerts from "./components/Alerts";
 // import styled from "styled-components";
 
 function App() {
-
   return (
     <div>
       <GlobalStyles />
@@ -20,6 +19,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

@@ -32,13 +32,15 @@ const LoadingScreen = () => {
       <Loading>
         <h2>Weather Vane</h2>
 
-        <PuffLoader color={"#fff"} loading={loading && !GPSError} size={50} />
-        <img src={globe} alt="globe" />
+        <div className="globe">
+          <PuffLoader color={"#fff"} loading={loading && !GPSError} size={50} />
+          <img src={globe} alt="globe" />
 
-        {!GPSError && <p>loading...</p>}
+          {!GPSError && <p>loading...</p>}
+        </div>
 
         {GPSError && (
-          <div>
+          <div className="error-text">
             <p style={{ color: "var(--color-accent)" }}>GPS Error</p>
             <p>
               If location permissions are not enabled for this site on your
@@ -56,14 +58,18 @@ const Loading = styled.div`
   height: 89vh;
   width: 100%;
   padding: 0 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  .globe {
+    margin-top: 13vh;
+    text-align: center;
+  }
+  .error-text {
+    margin-top: 10vh;
+  }
   h2 {
+    text-align: center;
     font-weight: 100;
     font-size: 2rem;
-    margin-bottom: 2.5em;
+    margin-top: 1em;
   }
   p {
     margin-bottom: 0.5em;
