@@ -36,7 +36,7 @@ const LoadingScreen = () => {
           <img src={globe} alt="globe" />
           <div className="loader">
             <PuffLoader
-              color={"#fff"}
+              color={"#ff7676"}
               loading={loading && !GPSError}
               size={80}
             />
@@ -63,11 +63,14 @@ const LoadingScreen = () => {
 const Loading = styled.div`
   height: 89vh;
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   padding: 0 2em;
   .globe {
     margin: 4rem auto 1rem auto;
     position: relative;
     width: 80%;
+    max-width: 300px;
   }
   .globe img {
     width: 100%;

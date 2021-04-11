@@ -58,7 +58,7 @@ const Home = () => {
           </div>
         )}
 
-        {showDetails && (
+        {showDetails && currentData && (
           <div>
             <ScrollingHeader
               toggleDetails={toggleDetails}
@@ -70,7 +70,7 @@ const Home = () => {
             <DayDetails timezone={location.timezone} data={currentData} />
           </div>
         )}
-        
+
       </Page>
     );
   }
