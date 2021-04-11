@@ -25,24 +25,25 @@ const LoadingScreen = () => {
   }, []);
 
   const loading = useSelector((state) => state.loading);
-  let screen = null;
 
+  let screen = "";
   if (loading) {
     screen = (
       <Loading>
         <h2>Weather Vane</h2>
 
-        <div className="hero">
-          <div>
-          <PuffLoader 
-          color={"#fff"} 
-          loading={loading && !GPSError} 
-          size={80} />
-          </div>
+        <div className="globe">
           <img src={globe} alt="globe" />
-
-          {!GPSError && <p>loading...</p>}
+          <div className="loader">
+            <PuffLoader
+              color={"#fff"}
+              loading={loading && !GPSError}
+              size={80}
+            />
+          </div>
         </div>
+
+        {!GPSError && <p>loading...</p>}
 
         {GPSError && (
           <div className="error-text">
@@ -63,12 +64,23 @@ const Loading = styled.div`
   height: 89vh;
   width: 100%;
   padding: 0 2em;
-  .hero {
-    margin-top: 13vh;
-    text-align: center;
+  .globe {
+    margin: 4rem auto 1rem auto;
+    position: relative;
+    width: 80%;
+  }
+  .globe img {
+    width: 100%;
+  }
+  .loader {
+    position: absolute;
+    top: 7%;
+    left: 25%;
+    display: flex;
+    justify-content: center;
   }
   .error-text {
-    margin-top: 10vh;
+    margin-top: 3vh;
   }
   h2 {
     text-align: center;
@@ -79,10 +91,6 @@ const Loading = styled.div`
   p {
     margin-bottom: 0.5em;
     line-height: 1.5em;
-  }
-  img {
-    max-width: 45%;
-    margin-bottom: 2rem;
   }
 `;
 

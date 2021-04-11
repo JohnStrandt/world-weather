@@ -12,7 +12,9 @@ import {
 
 const Home = () => {
   // state data for components
-  const { location, current, daily, hourly } = useSelector((state) => state);
+  const { location, current, daily, hourly, loading } = useSelector(
+    (state) => state
+  );
   // Forecast Details State
   const [currentDay, setCurrentDay] = useState(null);
   const [currentData, setCurrentData] = useState([]);
@@ -30,49 +32,49 @@ const Home = () => {
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
-  
-  return (
-    <Page>
 
-      {location && current && (
+  let home = "";
+
+  if (!loading) {
+    home = (
+      <Page>
+
         <CurrentWeather location={location} current={current} />
-      )}
-
-      <DynamicMargin />
-
-      {location && hourly && (
+        <DynamicMargin />
         <HourlyTemps timezone={location.timezone} hourly={hourly} />
-      )}
+        <DynamicMargin />
 
-      <DynamicMargin />
+        {!showDetails &&(
+          <div>
+            {daily.map((day) => (
+              <DaySummary
+                key={day.dt}
+                toggleDetails={toggleDetails}
+                setCurrentDay={setCurrentDay}
+                timezone={location.timezone}
+                day={day}
+              />
+            ))}
+          </div>
+        )}
 
-      {!showDetails && daily && location && (
-        <div>
-          {daily.map((day) => (
-            <DaySummary
-              key={day.dt}
+        {showDetails && (
+          <div>
+            <ScrollingHeader
               toggleDetails={toggleDetails}
+              currentDay={currentDay}
               setCurrentDay={setCurrentDay}
               timezone={location.timezone}
-              day={day}
+              daily={daily}
             />
-          ))}
-        </div>
-      )}
-      {showDetails && daily && currentData && (
-        <div>
-          <ScrollingHeader
-            toggleDetails={toggleDetails}
-            currentDay={currentDay}
-            setCurrentDay={setCurrentDay}
-            timezone={location.timezone}
-            daily={daily}
-          />
-          <DayDetails timezone={location.timezone} data={currentData} />
-        </div>
-      )}
-    </Page>
-  );
+            <DayDetails timezone={location.timezone} data={currentData} />
+          </div>
+        )}
+        
+      </Page>
+    );
+  }
+  return home;
 };
 
 const Page = styled.div`
