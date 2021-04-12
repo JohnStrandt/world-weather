@@ -27,6 +27,7 @@ const LoadingScreen = () => {
   const loading = useSelector((state) => state.loading);
 
   let screen = "";
+
   if (loading) {
     screen = (
       <Loading>
@@ -43,7 +44,7 @@ const LoadingScreen = () => {
           </div>
         </div>
 
-        {!GPSError && <p>loading...</p>}
+        {!GPSError && <p className="loading-text">loading...</p>}
 
         {GPSError && (
           <div className="error-text">
@@ -67,9 +68,9 @@ const Loading = styled.div`
   margin: 0 auto;
   padding: 0 2em;
   .globe {
-    margin: 4rem auto 1rem auto;
+    margin: 5rem auto 2rem auto;
     position: relative;
-    width: 80%;
+    width: 50%;
     max-width: 300px;
   }
   .globe img {
@@ -77,13 +78,16 @@ const Loading = styled.div`
   }
   .spinner {
     position: absolute;
-    top: 0;
-    left: 25%;
+    top: -10%;
+    left: 15%;
     display: flex;
     justify-content: center;
   }
+  .loading-text {
+    text-align: center;
+  }
   .error-text {
-    margin-top: 3vh;
+    margin-top: 10vh;
   }
   h2 {
     text-align: center;
