@@ -34,11 +34,11 @@ const LoadingScreen = () => {
 
         <div className="globe">
           <img src={globe} alt="globe" />
-          <div className="loader">
+          <div className="spinner">
             <PuffLoader
-              color={"#ff7676"}
+              color={"white"}
               loading={loading && !GPSError}
-              size={80}
+              size={100}
             />
           </div>
         </div>
@@ -75,9 +75,9 @@ const Loading = styled.div`
   .globe img {
     width: 100%;
   }
-  .loader {
+  .spinner {
     position: absolute;
-    top: 7%;
+    top: 0;
     left: 25%;
     display: flex;
     justify-content: center;
