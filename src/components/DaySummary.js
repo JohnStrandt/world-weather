@@ -12,7 +12,7 @@ import {
 
 const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
   let localTime = unixToLocalTime(day.dt, timezone);
-  let weekday = getWeekday(localTime); // console.log in call
+  let weekday = getWeekday(localTime);
   let high = Math.round(day.temp.max);
   let low = Math.round(day.temp.min);
   // dates compared in format: Tue, Apr 06

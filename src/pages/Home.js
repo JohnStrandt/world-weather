@@ -41,7 +41,7 @@ const Home = () => {
 
         <CurrentWeather location={location} current={current} />
         <DynamicMargin />
-        <HourlyTemps timezone={location.timezone} hourly={hourly} />
+        <HourlyTemps hourlyForecast={hourly} />
         <DynamicMargin />
 
         {!showDetails &&(

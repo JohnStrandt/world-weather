@@ -1,36 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import { getHour, unixToLocalTime } from "../util/time";
 import { iconStyle } from "../util/styles";
 
-const HourlyTemps= ({
-  timezone,
-  hourly,
-}) => {
+const HourlyTemps = ( {hourlyForecast} ) => {
 
   return (
     <Scroll>
-      {hourly.map((hour) => (
-        <Hour
-          key={hour.dt}
-        >
-          <div>
-          {getHour(unixToLocalTime(hour.dt, timezone))}
+      {hourlyForecast.map((day) => (
+
+        <div key={day.label}>
+          <p className="day-label">{day.label}</p>
+
+          <div className="hours">
+          {day.hours.map(hour => (
+
+            <div className="hour" key={hour.time}>
+              <div>{hour.time}</div>
+              <div>
+                <i className={iconStyle(hour.icon)}></i>
+              </div>
+              <div>{hour.temp}°</div>
+            </div>
+
+          ))}
           </div>
-          <div>
-            <i className={iconStyle(hour.weather[0].icon)}></i>
-          </div>
-          <div>
-            {Math.round(hour.temp)}°
-          </div>        
-        </Hour>
+        </div>
       ))}
     </Scroll>
   );
 };
 
+
 const Scroll = styled.div`
-  font-size: .8rem;
+  font-size: 0.8rem;
   display: flex;
   overflow: auto;
   white-space: nowrap;
@@ -41,14 +43,25 @@ const Scroll = styled.div`
     width: 0px;
     height: 0px;
   }
+  .day-label {
+  position: -webkit-sticky;
+  position: sticky;
+  display: inline-block;/* this is key to sticky working */
+  left: 0;
+  margin-right: 2rem;
+  margin-bottom: .75em;
+  }
+  .hours {
+    display: flex;
+  }
+  .hour{
+    text-align: center;
+    margin-right: 2rem;
+    i {
+      font-size: 1.2rem;
+  }
+}
 `;
 
-const Hour = styled.div`
-  text-align: center;
-  margin-right: 2rem;
-  i {
-    font-size: 1.2rem;
-  }
-`;
 
 export default HourlyTemps;

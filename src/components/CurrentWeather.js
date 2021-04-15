@@ -28,7 +28,6 @@ const CurrentWeather = ({ location, current }) => {
   });
 
   const alertClickHandler = () => {
-    // document.body.style.overflow = "hidden";
     dispatch({
       type: "TOGGLE_SHOW_ALERTS",
     });
