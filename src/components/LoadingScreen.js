@@ -38,7 +38,7 @@ const LoadingScreen = () => {
           <div className="spinner">
             <PuffLoader
               color={"white"}
-              loading={loading && !GPSError}
+              loading={!GPSError}
               size={100}
             />
           </div>
@@ -80,8 +80,6 @@ const Loading = styled.div`
     position: absolute;
     top: -10%;
     left: 15%;
-    display: flex;
-    justify-content: center;
   }
   .loading-text {
     text-align: center;

@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { iconStyle } from "../util/styles";
 
-const HourlyTemps = ( {hourlyForecast} ) => {
+const HourlyTemps = ({ hourlyForecast }) => {
+
+  useEffect(() => {
+    // reset hourly forecast scroll position on location change
+    let firstDay = document.getElementsByClassName("hours")[0];
+    let firstHour = firstDay.firstElementChild;
+    firstHour.scrollIntoView({ behavior: "smooth", inline: "start" });
+  });
 
   return (
     <Scroll>
