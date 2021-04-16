@@ -5,16 +5,16 @@ import styled from "styled-components";
 import {
   CurrentWeather,
   HourlyTemps,
-  DaySummary,
+  DailyForecast,
   ScrollingHeader,
   DayDetails,
 } from "../components";
 
 const Home = () => {
-  // state data for components
-  const { location, current, daily, hourly, loading } = useSelector(
+  const { location, daily, loading } = useSelector(
     (state) => state
   );
+
   // Forecast Details State
   const [currentDay, setCurrentDay] = useState(null);
   const [currentData, setCurrentData] = useState([]);
@@ -23,11 +23,12 @@ const Home = () => {
 
   useEffect(() => {
     setCurrentData(daily.find((day) => day.dt === currentDay));
-  }, [currentDay, daily]);
+  }, [currentDay, daily]);// really triggered by currentDay
 
   useEffect(() => {
     setShowDetails(false);
-  }, [location]); // hide details on location change
+    // hide details on location change
+  }, [location]); 
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);
@@ -38,24 +39,16 @@ const Home = () => {
   if (!loading) {
     home = (
       <Page>
-
-        <CurrentWeather location={location} current={current} />
+        <CurrentWeather />
         <DynamicMargin />
-        <HourlyTemps hourlyForecast={hourly} />
+        <HourlyTemps />
         <DynamicMargin />
 
-        {!showDetails &&(
-          <div>
-            {daily.map((day) => (
-              <DaySummary
-                key={day.dt}
-                toggleDetails={toggleDetails}
-                setCurrentDay={setCurrentDay}
-                timezone={location.timezone}
-                day={day}
-              />
-            ))}
-          </div>
+        {!showDetails && (
+          <DailyForecast
+            toggleDetails={toggleDetails}
+            setCurrentDay={setCurrentDay}
+          />
         )}
 
         {showDetails && currentData && (
@@ -70,7 +63,6 @@ const Home = () => {
             <DayDetails timezone={location.timezone} data={currentData} />
           </div>
         )}
-
       </Page>
     );
   }
@@ -86,7 +78,8 @@ const Page = styled.div`
   padding: 1.7rem 0.5rem 1rem 0.5rem;
   width: min(100%, 550px);
 `;
-// drop the dynamic margins??
+// drop the dynamic margins?? 
+// maybe change Page to justify-content: space-around??
 const DynamicMargin = styled.div`
   margin-top: 4vh;
 `;

@@ -1,47 +1,36 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { iconStyle } from "../util/styles";
 import next from "../images/next.svg";
 
-import {
-  unixToLocalTime,
-  getWeekday,
-  getCurrentTime,
-  getDay,
-} from "../util/time";
+const DailyForecast = ({ toggleDetails, setCurrentDay }) => {
 
-const DaySummary = ({ toggleDetails, setCurrentDay, day, timezone }) => {
-  let localTime = unixToLocalTime(day.dt, timezone);
-  let weekday = getWeekday(localTime);
-  let high = Math.round(day.temp.max);
-  let low = Math.round(day.temp.min);
-  // dates compared in format: Tue, Apr 06
-  let currentDay = getDay(localTime);
-  let today = getDay(getCurrentTime(timezone));
-  if (currentDay === today) {
-    weekday = "Today";
-  }
+  const daily = useSelector((state) => state.dailySummary);
 
-  const clickHandler = () => {
-    setCurrentDay(day.dt);
-    toggleDetails();
-  };
-
-  return (
-    <Day onClick={clickHandler}>
-      <div className="day">{weekday}</div>
+  let dailyForecast = daily.map((day) => (
+    <Day
+      key={day.dt}
+      onClick={() => {
+        setCurrentDay(day.dt);
+        toggleDetails();
+      }}
+    >
+      <div className="day">{day.weekday}</div>
       <div className="hilo">
-        <div className={iconStyle(day.weather[0].icon)}></div>
+        <div className={iconStyle(day.icon)}></div>
         <div>
-          {high} <span className="light">{low}</span>
+          {day.high} <span className="light">{day.low}</span>
         </div>
       </div>
-      <div className="description">{day.weather[0].description}</div>
+      <div className="description">{day.description}</div>
       <div className="arrow">
         <img src={next} alt="next" />
       </div>
     </Day>
-  );
+  ));
+
+  return dailyForecast;
 };
 
 const Day = styled.div`
@@ -87,4 +76,4 @@ const Day = styled.div`
   }
 `;
 
-export default DaySummary;
+export default DailyForecast;

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { searchURL, forecastURL, gpsURL } from "../api";
-import { unixToLocalTime, getWeekday, getHour } from "../util/time";
+import { unixToLocalTime, getWeekday, getHour, getDay, getCurrentTime } from "../util/time";
 
 export const getWeather = (city) => async (dispatch) => {
   let todaysWeather = null;
@@ -46,12 +46,18 @@ export const getWeather = (city) => async (dispatch) => {
       todaysWeather.data.timezone
     );
 
+    let dailySummaryData = createDailySummaryArray(
+      forecastWeather.data.daily,
+      todaysWeather.data.timezone
+    );
+
     dispatch({
       type: "FETCH_WEATHER",
       payload: {
         location: location,
         current: current,
         daily: forecastWeather.data.daily,
+        dailySummary: dailySummaryData,
         hourly: hourlyData,
       },
     });
@@ -80,12 +86,18 @@ export const getGPSWeather = (lat, lon) => async (dispatch) => {
     todaysWeather.data.timezone
   );
 
+  let dailySummaryData = createDailySummaryArray(
+    forecastWeather.data.daily,
+    todaysWeather.data.timezone
+  );
+
   dispatch({
     type: "FETCH_WEATHER",
     payload: {
       location: location,
       current: current,
       daily: forecastWeather.data.daily,
+      dailySummary: dailySummaryData,
       hourly: hourlyData,
     },
   });
@@ -121,4 +133,31 @@ const createHourlyForecastArray = (hourlyWeather, tz) => {
   hourlyForecast[1].label = "Tomorrow";
 
   return hourlyForecast;
+};
+
+const createDailySummaryArray = (daily, tz) => {
+
+  const summaryArray = [];
+  let today = getDay(getCurrentTime(tz)); // format: Tue, Apr 06
+
+  daily.forEach((day) => {
+    let localTime = unixToLocalTime(day.dt, tz);
+    let currentDay = getDay(localTime); // format: Tue, Apr 06
+    let weekday = getWeekday(localTime); // format: Tuesday
+
+    if (currentDay === today) weekday = "Today";
+
+    let newDay = {
+      dt: day.dt,
+      weekday: weekday,
+      icon: day.weather[0].icon,
+      high: Math.round(day.temp.max),
+      low: Math.round(day.temp.min),
+      description: day.weather[0].description,
+    };
+
+    summaryArray.push(newDay);
+  });
+
+  return summaryArray;
 };

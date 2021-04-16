@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getCurrentTime, dateAndTime } from "../util/time";
 import { windDirection } from "../util/utilities";
 import arrow from "../images/double_arrow_accent.svg";
 
-const CurrentWeather = ({ location, current }) => {
+const CurrentWeather = () => {
+
+  const { location, current } = useSelector((state) => state);
+
+
   let localTime = dateAndTime(getCurrentTime(location.timezone));
   let currentTemp = Math.round(current.temp);
   let alerts = current.alerts;

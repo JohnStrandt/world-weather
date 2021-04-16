@@ -20,7 +20,7 @@ const ScrollingHeader = ({
     let element = document.querySelector("#highlighted");
     if(element){
       element.scrollIntoView({ behavior: "smooth", inline: "center" });
-      // scrolls to current day after render
+      // scrolls to selected day after render
     }
   });
 

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { getWeather } from "../actions/weatherAction";
 import { useSelector, useDispatch } from "react-redux";
 
-const Nav = () => {
+const SearchBar = () => {
   const dispatch = useDispatch();
   const [textInput, setTextInput] = useState("");
 
@@ -85,4 +85,4 @@ const StyledForm = styled.form`
   }
 `;
 
-export default Nav;
+export default SearchBar;
