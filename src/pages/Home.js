@@ -14,7 +14,6 @@ const Home = () => {
   const { location, daily, loading } = useSelector(
     (state) => state
   );
-
   // Forecast Details State
   const [currentDay, setCurrentDay] = useState(null);
   const [currentData, setCurrentData] = useState([]);
@@ -50,17 +49,14 @@ const Home = () => {
             setCurrentDay={setCurrentDay}
           />
         )}
-
         {showDetails && currentData && (
           <div>
             <ScrollingHeader
               toggleDetails={toggleDetails}
               currentDay={currentDay}
               setCurrentDay={setCurrentDay}
-              timezone={location.timezone}
-              daily={daily}
             />
-            <DayDetails timezone={location.timezone} data={currentData} />
+            <DayDetails data={currentData} />
           </div>
         )}
       </Page>
@@ -78,8 +74,7 @@ const Page = styled.div`
   padding: 1.7rem 0.5rem 1rem 0.5rem;
   width: min(100%, 550px);
 `;
-// drop the dynamic margins?? 
-// maybe change Page to justify-content: space-around??
+
 const DynamicMargin = styled.div`
   margin-top: 4vh;
 `;

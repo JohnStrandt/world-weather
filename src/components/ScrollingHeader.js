@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { getDay, unixToLocalTime } from "../util/time";
 import clear from "../images/clear.svg";
@@ -7,9 +8,12 @@ const ScrollingHeader = ({
   toggleDetails,
   currentDay,
   setCurrentDay,
-  timezone,
-  daily,
 }) => {
+
+  const { location, daily} = useSelector(
+    (state) => state
+  );
+
   const idHandler = (day) => {
     let id = day;
     if (currentDay === day) id = "highlighted";
@@ -34,7 +38,7 @@ const ScrollingHeader = ({
             className="date"
             onClick={() => setCurrentDay(day.dt)}
           >
-            {getDay(unixToLocalTime(day.dt, timezone))}
+            {getDay(unixToLocalTime(day.dt, location.timezone))}
           </div>
         ))}
       </Scroll>

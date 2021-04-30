@@ -1,11 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { iconStyle } from "../util/styles";
 
 import { unixToLocalTime, formatTime } from "../util/time";
 import { windDirection } from "../util/utilities";
 
-const DayDetails = ({ timezone, data }) => {
+const DayDetails = ({ data }) => {
+
+  const timezone = useSelector((state) => state.location.timezone);
+
   let _sunrise = formatTime(unixToLocalTime(data.sunrise, timezone));
   let _sunset = formatTime(unixToLocalTime(data.sunset, timezone));
   let highTemp = Math.round(data.temp.max);
