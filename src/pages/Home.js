@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 // Components
 import {
@@ -11,23 +11,29 @@ import {
 } from "../components";
 
 const Home = () => {
-  const { location, daily, loading } = useSelector(
-    (state) => state
-  );
+  const { location, daily, loading } = useSelector((state) => state);
   // Forecast Details State
   const [currentDay, setCurrentDay] = useState(null);
   const [currentData, setCurrentData] = useState([]);
   // used to toggle Forecast Details render
   const [showDetails, setShowDetails] = useState(false);
 
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     setCurrentData(daily.find((day) => day.dt === currentDay));
-  }, [currentDay, daily]);// really triggered by currentDay
+  }, [currentDay, daily]); // really triggered by currentDay
 
   useEffect(() => {
     setShowDetails(false);
     // hide details on location change
-  }, [location]); 
+  }, [location]);
+
+  useEffect(() => {
+    return () => {
+      window.addEventListener("beforeunload", dispatch({type: "CLEAR_STATE"}));
+    };
+  }, [dispatch]);// needed dependency?
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);

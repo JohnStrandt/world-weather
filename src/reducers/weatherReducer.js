@@ -37,7 +37,7 @@ const weatherReducer = (state = initState, action) => {
     case "CLEAR_STATE":
       return initState;
     default:
-      return { ...state };
+      return state;
   }
 };
 

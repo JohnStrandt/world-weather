@@ -9,7 +9,6 @@ const CurrentWeather = () => {
 
   const { location, current } = useSelector((state) => state);
 
-
   let localTime = dateAndTime(getCurrentTime(location.timezone));
   let currentTemp = Math.round(current.temp);
   let alerts = current.alerts;
