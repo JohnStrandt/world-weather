@@ -72,7 +72,6 @@ const Home = () => {
 };
 
 const Page = styled.div`
-  min-height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

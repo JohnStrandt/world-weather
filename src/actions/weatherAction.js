@@ -37,7 +37,7 @@ export const getWeather = (city) => async (dispatch) => {
     let current = {
       ...forecastWeather.data.current,
       high_temp: todaysWeather.data.main.temp_max,
-      low_temp: todaysWeather.data.main.temp_min, // not displaying temps anymore
+      low_temp: todaysWeather.data.main.temp_min,
       alerts: forecastWeather.data.alerts,
     };
 

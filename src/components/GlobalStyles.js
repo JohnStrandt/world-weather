@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
   --color-accent: #ff7676;
   --color-sun: #F7EA21;
 }
-/* icon: "01d" sun */
+
 * {
   margin: 0;
   padding: 0;
@@ -30,11 +30,9 @@ body{
   font-weight: 200;
   color: white;
 
-  /* background-color: var(----color-sky); */
   background-image: url(${largeSky});
   background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
+
   @media only screen and (max-width: 600px) {
     background-image: url(${mobileSky});
   }
