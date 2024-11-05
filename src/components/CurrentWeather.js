@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getCurrentTime, dateAndTime } from "../util/time";
 import { windDirection } from "../util/utilities";
-// import arrow from "../images/double_arrow_accent.svg";
 
 const CurrentWeather = () => {
 
@@ -36,18 +35,6 @@ const CurrentWeather = () => {
     });
   };
 
-// ORIGINAL ALERT SECTION DISPLAYING HEADLINES OF EACH ALERT
-// I COULD NOT COMMENT OUT IN PLACE
-  // {alerts && (
-  //   <div className="alerts">
-      // {alerts.map((alert) => (
-      //   <div className="alert" onClick={alertClickHandler} key={alert.event}>
-  //         <p key={alert.event}>
-  //           {alert.event} <img src={arrow} alt="details" />
-  //         </p>
-  //       </div>
-  //     ))}
-
   return (
     <Current>
       <div>
@@ -63,11 +50,9 @@ const CurrentWeather = () => {
         </p>
       </div>
       {alerts && (
-
           <p className="alert" onClick={alertClickHandler} >
             Weather Alert!
           </p>
-
       )}
     </Current>
   );
